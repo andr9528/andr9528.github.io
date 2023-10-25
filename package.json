@@ -1,7 +1,7 @@
 {
   "name": "cv",
   "version": "0.1.0",
-  "homepage": "https://andr9528.github.io/react-gh-pages",
+  "homepage": "https://andr9528.github.io",
   "private": true,
   "scripts": {
     "predeploy": "npm run build",
