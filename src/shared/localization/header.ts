@@ -1,16 +1,18 @@
 
 export interface HeaderLocalization {
-    helloWorld: string
-    danish: string
-    english: string
+    siteTitle: string
+    danishButton: string
+    englishButton: string
+    printButton: string
 }
 
 export type HeaderLocalizationKeys = keyof HeaderLocalization
 
 const defaultHeaderLocalization: HeaderLocalization = {
-    helloWorld: 'Hello World',
-    danish: 'Danish',
-    english: 'English'
+    siteTitle: 'André CV Site',
+    danishButton: 'Danish',
+    englishButton: 'English',
+    printButton: 'Print'
 }
 
 export const englishHeaderLocalization: HeaderLocalization = {
@@ -19,7 +21,8 @@ export const englishHeaderLocalization: HeaderLocalization = {
 
 export const danishHeaderLocalization: HeaderLocalization = {
     ...defaultHeaderLocalization,
-    helloWorld: 'Hej Verden',
-    danish: 'Dansk',
-    english: 'Engelsk'
+    siteTitle: 'André CV Side',
+    danishButton: 'Dansk',
+    englishButton: 'Engelsk',
+    printButton: 'Udskriv'
 }

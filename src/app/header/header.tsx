@@ -1,22 +1,56 @@
 
+import { Box, Button, ButtonGroup, Divider, Grid, Theme, ThemeProvider, Typography } from '@mui/material';
 import { Language, LocalizationService } from '../../shared/services/localization-service';
-import './header.scss'
+import { CenteredBox } from '@/shared/components/centered-box';
+import { RightAlignedBox } from '@/shared/components/right-aligned-box';
+import { ThemeService } from '../../shared/services/theme-service';
 
 export function Header(): JSX.Element {
-    const localizationService = LocalizationService.instance
-    
-    return (<>
-        <div className="header">
-            {localizationService.getHeaderText('helloWorld')}
-        </div>
-        <div className="header">
-            <button onClick={() => localizationService.setLanguage(Language.DANISH)}>
-                {localizationService.getHeaderText('danish')}
-            </button>
-            <button onClick={() => localizationService.setLanguage(Language.ENGLISH)}>
-                {localizationService.getHeaderText('english')}
-            </button>
-        </div>    
-    </>
+    const localizationService: LocalizationService = LocalizationService.instance
+    const themeService: ThemeService = ThemeService.instance
+
+    return (
+        <ThemeProvider theme={themeService.getTheme()}>
+            <Grid container width='100%'>
+                <Grid width={'40%'}>
+
+                </Grid>
+                <Grid width={'20%'}>
+                    <CenteredBox>
+                        <Typography>{localizationService.getHeaderText('siteTitle')}</Typography>
+                    </CenteredBox>
+                </Grid>
+                <Grid width={'40%'}>
+                    <RightAlignedBox>
+                        <ButtonGroup >
+                            <Button onClick={() => setLanguageToDanish()}>
+                                <Typography>{localizationService.getHeaderText('danishButton')}</Typography>
+                            </Button>
+                            <Button onClick={() => setLanguageToEnglish()}>
+                                <Typography>{localizationService.getHeaderText('englishButton')}</Typography>
+                            </Button>
+                        </ButtonGroup>
+                        <Divider orientation='vertical'  sx={{marginX: '10px', borderRightWidth: 5}}/>
+                        <ButtonGroup>
+                            <Button onClick={() => printCv()}>
+                                <Typography>{localizationService.getHeaderText('printButton')}</Typography>
+                            </Button>
+                        </ButtonGroup>
+                    </RightAlignedBox>     
+                </Grid>
+            </Grid>
+        </ThemeProvider>
     )
+
+    function setLanguageToDanish(): void {
+        localizationService.setLanguage(Language.DANISH)
+    }
+
+    function setLanguageToEnglish(): void {
+        localizationService.setLanguage(Language.ENGLISH)
+    }
+
+    function printCv(): void {
+
+    }
 }
