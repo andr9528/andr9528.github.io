@@ -1,5 +1,5 @@
 
-import { Box, Button, ButtonGroup, Divider, Grid, Theme, ThemeProvider, Typography } from '@mui/material';
+import { Box, Button, ButtonGroup, Divider, Grid, Paper, Theme, ThemeProvider, Typography } from '@mui/material';
 import { Language, LocalizationService } from '../../shared/services/localization-service';
 import { CenteredBox } from '@/shared/components/centered-box';
 import { RightAlignedBox } from '@/shared/components/right-aligned-box';
@@ -12,15 +12,17 @@ export function Header(): JSX.Element {
     return (
         <ThemeProvider theme={themeService.getTheme()}>
             <Grid container width='100%'>
-                <Grid width={'40%'}>
+                <Grid width={'30%'}>
 
                 </Grid>
-                <Grid width={'20%'}>
+                <Grid width={'40%'}>
                     <CenteredBox>
-                        <Typography>{localizationService.getHeaderText('siteTitle')}</Typography>
+                        <Paper elevation={4} sx={{padding: '10px'}}>
+                            <Typography variant='h3'>{localizationService.getHeaderText('siteTitle')}</Typography>
+                        </Paper>
                     </CenteredBox>
                 </Grid>
-                <Grid width={'40%'}>
+                <Grid width={'30%'}>
                     <RightAlignedBox>
                         <ButtonGroup >
                             <Button onClick={() => setLanguageToDanish()}>

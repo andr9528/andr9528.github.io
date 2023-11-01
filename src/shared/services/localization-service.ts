@@ -1,20 +1,21 @@
 import { Dispatch, SetStateAction } from "react"
 import { Localization, danishLocalization, englishLocalization } from "../localization/localization"
-import { UnexpectedUndefinedException } from "../exceptions/unexpected-undefined-exception"
 import { HeaderLocalizationKeys } from "../localization/header"
+import { BaseService } from "./base-service"
+import { ComponentGeneralInformationLocalizationKeys, EntityGeneralInformationLocalizationKeys } from "../localization/general-information"
 
 export enum Language {
     ENGLISH = 'en',
     DANISH = 'da',
 }
 
-export class LocalizationService {
+export class LocalizationService extends BaseService<Language> {
     public static instance: LocalizationService = new LocalizationService()
     private currentLanguage: Language
     private readonly localizations: Record<Language, Localization>
-    private stateUpdater?: Dispatch<SetStateAction<Language>> 
 
     private constructor() {
+        super()
         this.currentLanguage = Language.ENGLISH
         this.localizations = {
             da: danishLocalization,
@@ -24,7 +25,7 @@ export class LocalizationService {
         console.info(`Finished constructing ${LocalizationService.name}.`)
     }
 
-    public setupLocalizationService(stateUpdater: Dispatch<SetStateAction<Language>>) {
+    public setupStateUpdater(stateUpdater: Dispatch<SetStateAction<Language>>) {
         this.stateUpdater = stateUpdater        
         console.info(`Finished setup of ${LocalizationService.name}.`)
     }
@@ -35,15 +36,19 @@ export class LocalizationService {
         this.stateUpdater!(language)
     }
 
-    private assertStateUpdaterNotUndefined(caller: string): void {
-        if (!this.stateUpdater) {
-            throw new UnexpectedUndefinedException(`Expected 'stateUpdater' to be set durring ${caller}.`)
-        }
-    }
 
-    public getHeaderText(key: HeaderLocalizationKeys) {
+    public getHeaderText(key: HeaderLocalizationKeys): string {
         return this.getCurrentLocalization().header[key]
     }
+
+    public getEntityGeneralInformationText(key: EntityGeneralInformationLocalizationKeys): string {
+        return this.getCurrentLocalization().generalInformation.entityLocalization[key]
+    }
+
+    public getComponetGeneralInformationText(key: ComponentGeneralInformationLocalizationKeys): string {
+        return this.getCurrentLocalization().generalInformation.componentLocalization[key]
+    }
+
 
     private getCurrentLocalization(): Localization {
         return this.localizations[this.currentLanguage]

@@ -4,10 +4,6 @@ export class ThemeService {
     public static instance = new ThemeService()
     private theme: Theme
 
-
-    /**
-     *
-     */
     private constructor() {
         this.theme = createTheme({
             palette: {

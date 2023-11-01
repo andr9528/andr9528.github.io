@@ -1,10 +1,10 @@
 import { EducationLocalization, danishEducationLocalization, englishEducationLocalization } from "./education";
-import { GeneralLocalization, danishGeneralLocalization, englishGeneralLocalization } from "./general";
+import { GeneralInformationLocalization, danishGeneralLocalization, englishGeneralLocalization } from "./general-information";
 import { HeaderLocalization, danishHeaderLocalization, englishHeaderLocalization } from "./header";
 import { SummaryLocalization, danishSummaryLocalization, englishSummaryLocalization } from "./summary";
 
 export interface Localization {
-    general: GeneralLocalization
+    generalInformation: GeneralInformationLocalization
     education: EducationLocalization
     summary: SummaryLocalization
     header: HeaderLocalization
@@ -13,14 +13,14 @@ export interface Localization {
 export type LocalizationKeys = keyof Localization
 
 export const danishLocalization: Localization = {
-    general: danishGeneralLocalization,
+    generalInformation: danishGeneralLocalization,
     education: danishEducationLocalization,
     summary: danishSummaryLocalization,
     header: danishHeaderLocalization
 }
 
 export const englishLocalization: Localization = {
-    general: englishGeneralLocalization,
+    generalInformation: englishGeneralLocalization,
     education: englishEducationLocalization,
     summary: englishSummaryLocalization,
     header: englishHeaderLocalization
