@@ -2,8 +2,9 @@ import { Dispatch, SetStateAction } from "react"
 import { Localization, danishLocalization, englishLocalization } from "../localization/localization"
 import { HeaderLocalizationKeys } from "../localization/header"
 import { BaseService } from "./base-service"
-import { ComponentGeneralInformationLocalizationKeys, EntityGeneralInformationLocalizationKeys } from "../localization/general-information"
-import { GeneralInformation } from "../entities/general-information"
+import { ComponentGeneralInformationLocalizationKeys, EntityGeneralInformationLocalizationKeys } from "../localization/general-information-localization"
+import { GeneralInformationEntity } from "../entities/general-information-entity"
+import { ComponentEmploymentLocalizationKeys, EntityEmploymentLocalizationKeys } from "../localization/employment-localization"
 
 export enum Language {
     ENGLISH = 'en',
@@ -50,12 +51,19 @@ export class LocalizationService extends BaseService<Language> {
         return this.getCurrentLocalization().generalInformation.componentLocalization[key]
     }
 
-
     private getCurrentLocalization(): Localization {
         return this.localizations[this.currentLanguage]
     }
 
     public getCurrentLanguage(): Language {
         return this.currentLanguage
+    }
+
+    public getEntityEmploymentText(key: EntityEmploymentLocalizationKeys): string {
+        return this.getCurrentLocalization().employment.entityLocalization[key]
+    }
+
+    public getComponentEmploymentText(key: ComponentEmploymentLocalizationKeys): string {
+        return this.getCurrentLocalization().employment.componentLocalization[key]
     }
 }

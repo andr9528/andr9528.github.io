@@ -32,7 +32,7 @@ export function Header(): JSX.Element {
                                 <Typography>{localizationService.getHeaderText('englishButton')}</Typography>
                             </Button>
                         </ButtonGroup>
-                        <Divider orientation='vertical'  sx={{marginX: '10px', borderRightWidth: 5}}/>
+                        <Divider orientation='vertical' sx={{marginX: '10px', borderRightWidth: 5}}/>
                         <ButtonGroup>
                             <Button onClick={() => printCv()}>
                                 <Typography>{localizationService.getHeaderText('printButton')}</Typography>

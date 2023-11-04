@@ -1,4 +1,4 @@
-export interface GeneralInformation {
+export interface GeneralInformationEntity {
     firstName: string
     middleName: string
     lastName: string
