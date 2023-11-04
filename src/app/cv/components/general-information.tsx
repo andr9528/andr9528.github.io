@@ -8,6 +8,7 @@ export function GeneralInformation(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const generalInformation: GeneralInformation = EntityGenerationService.instance.getGeneralInformation()
     const fullName: string = `${generalInformation.firstName} ${generalInformation.middleName} ${generalInformation.lastName}`
+    const fullAddress: string = `${generalInformation.address}, ${generalInformation.postalNumber} ${generalInformation.city}, ${generalInformation.country}`
 
     return (
         <Paper elevation={2} sx={{padding: '5px'}}>
@@ -16,6 +17,23 @@ export function GeneralInformation(): JSX.Element {
                 labelProps={{variant: 'h5'}} 
                 labelText={localizationService.getComponetGeneralInformationText("fullNameLabel")} 
                 mainText={fullName}/>
+            <LabelledTypography 
+                labelProps={{variant: 'h5'}} 
+                labelText={localizationService.getComponetGeneralInformationText("dateOfBirthLabel")} 
+                mainText={generalInformation.dateOfBirth.toLocaleDateString(localizationService.getCurrentLanguage(), {dateStyle: "full"})}/>
+            <LabelledTypography 
+                labelProps={{variant: 'h5'}} 
+                labelText={localizationService.getComponetGeneralInformationText("emailLabel")} 
+                mainText={generalInformation.email}/>
+            <LabelledTypography 
+                labelProps={{variant: 'h5'}} 
+                labelText={localizationService.getComponetGeneralInformationText("phoneNumberLabel")} 
+                mainText={generalInformation.phoneNumber.toString()}/>
+            <LabelledTypography 
+                labelProps={{variant: 'h5'}} 
+                labelText={localizationService.getComponetGeneralInformationText("fullAddressLabel")} 
+                mainText={fullAddress}/>
+            
         </Paper>
         )
 }

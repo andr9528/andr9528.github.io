@@ -16,8 +16,8 @@ export class EntityGenerationService {
             lastName: 'Madsen',
             phoneNumber: 22287257,
             email: 'andre@steenhoff.dk',
-            dateOfBirth: new Date(3,1,1996),
-            city: 'Odense',
+            dateOfBirth: new Date(1996,1,3),
+            city: 'Odense V',
             country: this.localizationService.getEntityGeneralInformationText("country"),
             address: 'Duftrankevej 17 2. mf',
             postalNumber: 5200

@@ -54,4 +54,8 @@ export class LocalizationService extends BaseService<Language> {
     private getCurrentLocalization(): Localization {
         return this.localizations[this.currentLanguage]
     }
+
+    public getCurrentLanguage(): Language {
+        return this.currentLanguage
+    }
 }

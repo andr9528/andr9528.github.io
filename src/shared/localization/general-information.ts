@@ -5,8 +5,12 @@ export interface EntityGeneralInformationLocalization {
 export type EntityGeneralInformationLocalizationKeys = keyof EntityGeneralInformationLocalization
 
 export interface ComponentGeneralInformationLocalization {
-    fullNameLabel: string
     sectionHeader: string
+    fullNameLabel: string
+    dateOfBirthLabel: string
+    emailLabel: string
+    phoneNumberLabel: string
+    fullAddressLabel: string
 }
 
 export type ComponentGeneralInformationLocalizationKeys = keyof ComponentGeneralInformationLocalization
@@ -22,8 +26,12 @@ const defaultGeneralLocalization: GeneralInformationLocalization = {
         country: 'Denmark',
     },
     componentLocalization: {
+        emailLabel: "Email:",
+        sectionHeader: 'General Information',
         fullNameLabel: 'Full Name:',
-        sectionHeader: 'General Information'
+        dateOfBirthLabel: "Date of Birth:",
+        phoneNumberLabel: "Phone Number:",
+        fullAddressLabel: "Home Address:"
     }
 }
 
@@ -39,7 +47,10 @@ export const danishGeneralLocalization: GeneralInformationLocalization = {
     },
     componentLocalization: {
         ...defaultGeneralLocalization.componentLocalization,
+        sectionHeader: 'Generel Information',
         fullNameLabel: 'Fulde Navn:',
-        sectionHeader: 'Generel information'
+        dateOfBirthLabel: "Fødselsdag:",
+        phoneNumberLabel: "Telefon Nummber:",
+        fullAddressLabel: "Hjemme Addresse:"
     }
 }

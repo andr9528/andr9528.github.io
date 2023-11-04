@@ -1,4 +1,5 @@
 import { Typography, TypographyProps } from "@mui/material";
+import { HighlightedTypography } from "./highlidghted-typography";
 
 interface LabelledTypographyProps {
     labelProps?: TypographyProps
@@ -10,7 +11,7 @@ interface LabelledTypographyProps {
 export function LabelledTypography(props: LabelledTypographyProps): JSX.Element {
     return (
         <>
-            <Typography color={"Highlight"} {...props.labelProps}>{props.labelText}</Typography>
+            <HighlightedTypography {...props.labelProps}>{props.labelText}</HighlightedTypography>
             <Typography {...props.mainProps}>{props.mainText}</Typography>
         </>
         )
