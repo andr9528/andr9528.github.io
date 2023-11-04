@@ -14,7 +14,7 @@ export function GeneralInformation(): JSX.Element {
             <Typography variant="h4" display={'flex'} justifyContent={"center"}>{localizationService.getComponetGeneralInformationText("sectionHeader")}</Typography>
             <LabelledTypography 
                 labelProps={{variant: 'h5'}} 
-                labelText={localizationService.getComponetGeneralInformationText("fullName")} 
+                labelText={localizationService.getComponetGeneralInformationText("fullNameLabel")} 
                 mainText={fullName}/>
         </Paper>
         )

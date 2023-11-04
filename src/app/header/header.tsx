@@ -18,7 +18,7 @@ export function Header(): JSX.Element {
                 <Grid width={'40%'}>
                     <CenteredBox>
                         <Paper elevation={4} sx={{padding: '10px'}}>
-                            <Typography variant='h3'>{localizationService.getHeaderText('siteTitle')}</Typography>
+                            <Typography variant='h5'>{localizationService.getHeaderText('siteTitle')}</Typography>
                         </Paper>
                     </CenteredBox>
                 </Grid>

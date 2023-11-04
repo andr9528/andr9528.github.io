@@ -2,11 +2,11 @@ export interface GeneralInformation {
     firstName: string
     middleName: string
     lastName: string
-    phoneNumber: string
+    phoneNumber: number
     email: string
-    dateOfBirth: string
+    dateOfBirth: Date
     city: string
     country: string
     address: string
-    postalNumber: string
+    postalNumber: number
 }

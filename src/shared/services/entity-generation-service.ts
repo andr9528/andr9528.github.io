@@ -11,16 +11,16 @@ export class EntityGenerationService {
 
     public getGeneralInformation(): GeneralInformation {
         return {
-            firstName: this.localizationService.getEntityGeneralInformationText("firstName"),
-            middleName: this.localizationService.getEntityGeneralInformationText("middleName"),
-            lastName: this.localizationService.getEntityGeneralInformationText("lastName"),
-            phoneNumber: this.localizationService.getEntityGeneralInformationText("phoneNumber"),
-            email: this.localizationService.getEntityGeneralInformationText("email"),
-            dateOfBirth: this.localizationService.getEntityGeneralInformationText("dateOfBirth"),
-            city: this.localizationService.getEntityGeneralInformationText("city"),
+            firstName: 'André',
+            middleName: 'Steenhoff',
+            lastName: 'Madsen',
+            phoneNumber: 22287257,
+            email: 'andre@steenhoff.dk',
+            dateOfBirth: new Date(3,1,1996),
+            city: 'Odense',
             country: this.localizationService.getEntityGeneralInformationText("country"),
-            address: this.localizationService.getEntityGeneralInformationText("address"),
-            postalNumber: this.localizationService.getEntityGeneralInformationText("postalNumber")
+            address: 'Duftrankevej 17 2. mf',
+            postalNumber: 5200
         }
     }
 }

@@ -3,6 +3,7 @@ import { Localization, danishLocalization, englishLocalization } from "../locali
 import { HeaderLocalizationKeys } from "../localization/header"
 import { BaseService } from "./base-service"
 import { ComponentGeneralInformationLocalizationKeys, EntityGeneralInformationLocalizationKeys } from "../localization/general-information"
+import { GeneralInformation } from "../entities/general-information"
 
 export enum Language {
     ENGLISH = 'en',
