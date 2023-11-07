@@ -5,11 +5,10 @@ import { EntityEmploymentLocalizationKeys } from '../../localization/employment-
 import { ReactNode } from "react";
 
 export class EmploymentLocalizationService extends BaseEntityLocalizationService implements EntityLocalizationService<ComponentEmploymentLocalizationKeys, EntityEmploymentLocalizationKeys> {
-    getEntityText(key: EntityEmploymentLocalizationKeys): ReactNode {
+    public getEntityText(key: EntityEmploymentLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().employment.entityLocalization[key]
     }
-    getComponentText(key: ComponentEmploymentLocalizationKeys): ReactNode {
+    public getComponentText(key: ComponentEmploymentLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().employment.componentLocalization[key]
     }
-
 }

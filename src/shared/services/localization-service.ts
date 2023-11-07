@@ -9,6 +9,8 @@ import { EntityLocalizationService } from "./value-objects/entity-localization-s
 import { GeneralInformationLocalizationService } from "./entity-localization/general-information-localization-service"
 import { UnexpectedUndefinedException } from "../exceptions/unexpected-undefined-exception"
 import { EmploymentLocalizationService } from "./entity-localization/employment-localization-service"
+import { ProfileLocalizationService } from "./entity-localization/profile-localization-service"
+import { ComponentProfileLocalizationKeys, EntityProfileLocalizationKeys } from "../localization/profile-localization"
 
 export enum Language {
     ENGLISH = 'en',
@@ -31,6 +33,7 @@ export class LocalizationService extends BaseService<Language> {
         this.entittyLocalizationServices = {
             generalInformation: new GeneralInformationLocalizationService(this.getCurrentLocalization.bind(this)),
             employment: new EmploymentLocalizationService(this.getCurrentLocalization.bind(this)),
+            profile: new ProfileLocalizationService(this.getCurrentLocalization.bind(this)),
             education: undefined,
             header: undefined
         }
@@ -85,6 +88,23 @@ export class LocalizationService extends BaseService<Language> {
 
         return service
     }
+
+    public getProfileLocalizationService(): EntityLocalizationService<
+        ComponentProfileLocalizationKeys, 
+        EntityProfileLocalizationKeys
+    > {
+        const service: EntityLocalizationService<
+        ComponentProfileLocalizationKeys, 
+        EntityProfileLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['profile']
+
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for Profile to exist.')
+        }
+
+        return service
+    }
+
 
     private getCurrentLocalization(): Localization {
         return this.localizations[this.currentLanguage]

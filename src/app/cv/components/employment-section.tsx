@@ -10,7 +10,7 @@ export function EmploymentSection(): JSX.Element {
     const employments: EmploymentEntity[] = EntityGenerationService.instance.getEmploymentEntities()
     
     return (
-        <Paper elevation={2} sx={{padding: '5px'}}>
+        <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
             <Typography variant="h4" display={'flex'} justifyContent={"center"}>
                 {entityLocalizationService.getComponentText("sectionHeader")}
             </Typography>
