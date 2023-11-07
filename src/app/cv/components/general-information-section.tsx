@@ -6,34 +6,36 @@ import { LabelledTypography } from "@/shared/components/labelled-typography";
 
 export function GeneralInformationSection(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
+    const entityLocalizationService = localizationService.getGeneralInformationLocalizationService()
     const generalInformation: GeneralInformationEntity = EntityGenerationService.instance.getGeneralInformationEntity()
     const fullName: string = `${generalInformation.firstName} ${generalInformation.middleName} ${generalInformation.lastName}`
-    const fullAddress: string = `${generalInformation.address}, ${generalInformation.postalNumber} ${generalInformation.city}, ${localizationService.getEntityGeneralInformationText(generalInformation.countryKey)}`
+    const fullAddress: string = 
+        `${generalInformation.address}, ${generalInformation.postalNumber} ${generalInformation.city}, ${entityLocalizationService.getEntityText(generalInformation.countryKey)}`
 
     return (
         <Paper elevation={2} sx={{padding: '5px'}}>
             <Typography variant="h4" display={'flex'} justifyContent={"center"}>
-                {localizationService.getComponetGeneralInformationText("sectionHeader")}
+                {entityLocalizationService.getComponentText("sectionHeader")}
             </Typography>
             <LabelledTypography 
                 labelProps={{variant: 'h5'}} 
-                labelText={localizationService.getComponetGeneralInformationText("fullNameLabel")} 
+                labelText={entityLocalizationService.getComponentText("fullNameLabel")} 
                 mainText={fullName}/>
             <LabelledTypography 
                 labelProps={{variant: 'h5'}} 
-                labelText={localizationService.getComponetGeneralInformationText("dateOfBirthLabel")} 
+                labelText={entityLocalizationService.getComponentText("dateOfBirthLabel")} 
                 mainText={generalInformation.dateOfBirth.toLocaleDateString(localizationService.getCurrentLanguage(), {dateStyle: "full"})}/>
             <LabelledTypography 
                 labelProps={{variant: 'h5'}} 
-                labelText={localizationService.getComponetGeneralInformationText("emailLabel")} 
+                labelText={entityLocalizationService.getComponentText("emailLabel")} 
                 mainText={generalInformation.email}/>
             <LabelledTypography 
                 labelProps={{variant: 'h5'}} 
-                labelText={localizationService.getComponetGeneralInformationText("phoneNumberLabel")} 
+                labelText={entityLocalizationService.getComponentText("phoneNumberLabel")} 
                 mainText={generalInformation.phoneNumber.toString()}/>
             <LabelledTypography 
                 labelProps={{variant: 'h5'}} 
-                labelText={localizationService.getComponetGeneralInformationText("fullAddressLabel")} 
+                labelText={entityLocalizationService.getComponentText("fullAddressLabel")} 
                 mainText={fullAddress}/>
             
         </Paper>

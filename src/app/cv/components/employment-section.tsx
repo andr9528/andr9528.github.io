@@ -6,12 +6,13 @@ import { Employment } from "./emplyment-section/employment";
 
 export function EmploymentSection(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
+    const entityLocalizationService = localizationService.getEmploymentLocalizationService()
     const employments: EmploymentEntity[] = EntityGenerationService.instance.getEmploymentEntities()
     
     return (
         <Paper elevation={2} sx={{padding: '5px'}}>
             <Typography variant="h4" display={'flex'} justifyContent={"center"}>
-                {localizationService.getComponentEmploymentText("sectionHeader")}
+                {entityLocalizationService.getComponentText("sectionHeader")}
             </Typography>
             
             {employments.map(entity => (

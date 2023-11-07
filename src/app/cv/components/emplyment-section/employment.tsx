@@ -10,6 +10,7 @@ interface EmploymentProps {
 
 export function Employment(props: EmploymentProps): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance    
+    const entityLocalizationService = localizationService.getEmploymentLocalizationService()
     const employedAsAt: string = buildEmployedAsAtString()
     const employmentPeriode: string = buildEmploymentPeriodeString()
     
@@ -22,16 +23,16 @@ export function Employment(props: EmploymentProps): JSX.Element {
                 {employmentPeriode}
             </Typography>
             <LabelledTypography 
-                labelText={localizationService.getComponentEmploymentText("workDescriptionLabel")}
+                labelText={entityLocalizationService.getComponentText("workDescriptionLabel")}
                 labelProps={{color: 'GrayText'}}
-                mainText={localizationService.getEntityEmploymentText(props.employmentEntity.workDescriptionKey)}
+                mainText={entityLocalizationService.getEntityText(props.employmentEntity.workDescriptionKey)}
                 mainProps={{variant: 'body1', style: {whiteSpace: 'pre-line'}}}/>
         </Paper>
     )
 
     function buildEmployedAsAtString(): string {
-        const title: ReactNode = localizationService.getEntityEmploymentText(props.employmentEntity.jobTitleKey)
-        const joiningWord: ReactNode = localizationService.getComponentEmploymentText('joiningWord')
+        const title: ReactNode = entityLocalizationService.getEntityText(props.employmentEntity.jobTitleKey)
+        const joiningWord: ReactNode = entityLocalizationService.getComponentText('joiningWord')
         const employer: string = props.employmentEntity.employer
         const city: string = props.employmentEntity.city
 
@@ -42,8 +43,8 @@ export function Employment(props: EmploymentProps): JSX.Element {
         const start: string = getLocalizedDate(props.employmentEntity.startDate)
         
         if (props.employmentEntity.endDate && isDateInFuture(props.employmentEntity.endDate)) {
-            const currentEmplyment: ReactNode = localizationService.getComponentEmploymentText('currentEmployment')
-            const expectedEnd: ReactNode = localizationService.getComponentEmploymentText('expectedEnd')
+            const currentEmplyment: ReactNode = entityLocalizationService.getComponentText('currentEmployment')
+            const expectedEnd: ReactNode = entityLocalizationService.getComponentText('expectedEnd')
             const endDate: string = getLocalizedDate(props.employmentEntity.endDate)
             const end: string = `${currentEmplyment}, ${expectedEnd} ${endDate}`
             return `${start} - ${end}`
@@ -51,7 +52,7 @@ export function Employment(props: EmploymentProps): JSX.Element {
 
         const end: ReactNode = props.employmentEntity.endDate 
             ? getLocalizedDate(props.employmentEntity.endDate) 
-            : localizationService.getComponentEmploymentText('currentEmployment')
+            : entityLocalizationService.getComponentText('currentEmployment')
 
         return `${start} - ${end}`
     }

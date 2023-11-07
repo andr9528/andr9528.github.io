@@ -1,10 +1,14 @@
 import { Dispatch, ReactNode, SetStateAction } from "react"
-import { Localization, danishLocalization, englishLocalization } from "../localization/localization"
-import { HeaderLocalizationKeys } from "../localization/header"
+import { Localization, LocalizationKeys, danishLocalization, englishLocalization } from "../localization/localization"
+import { HeaderLocalizationKeys } from "../localization/header-localization"
 import { BaseService } from "./base-service"
 import { ComponentGeneralInformationLocalizationKeys, EntityGeneralInformationLocalizationKeys } from "../localization/general-information-localization"
 import { GeneralInformationEntity } from "../entities/general-information-entity"
 import { ComponentEmploymentLocalizationKeys, EntityEmploymentLocalizationKeys } from "../localization/employment-localization"
+import { EntityLocalizationService } from "./value-objects/entity-localization-service"
+import { GeneralInformationLocalizationService } from "./entity-localization/general-information-localization-service"
+import { UnexpectedUndefinedException } from "../exceptions/unexpected-undefined-exception"
+import { EmploymentLocalizationService } from "./entity-localization/employment-localization-service"
 
 export enum Language {
     ENGLISH = 'en',
@@ -15,6 +19,7 @@ export class LocalizationService extends BaseService<Language> {
     public static instance: LocalizationService = new LocalizationService()
     private currentLanguage: Language
     private readonly localizations: Record<Language, Localization>
+    private readonly entittyLocalizationServices: Record<LocalizationKeys, EntityLocalizationService<unknown, unknown> | undefined>
 
     private constructor() {
         super()
@@ -22,6 +27,12 @@ export class LocalizationService extends BaseService<Language> {
         this.localizations = {
             da: danishLocalization,
             en: englishLocalization
+        }
+        this.entittyLocalizationServices = {
+            generalInformation: new GeneralInformationLocalizationService(this.getCurrentLocalization.bind(this)),
+            employment: new EmploymentLocalizationService(this.getCurrentLocalization.bind(this)),
+            education: undefined,
+            header: undefined
         }
 
         console.info(`Finished constructing ${LocalizationService.name}.`)
@@ -43,12 +54,36 @@ export class LocalizationService extends BaseService<Language> {
         return this.getCurrentLocalization().header[key]
     }
 
-    public getEntityGeneralInformationText(key: EntityGeneralInformationLocalizationKeys): ReactNode {
-        return this.getCurrentLocalization().generalInformation.entityLocalization[key]
+    public getGeneralInformationLocalizationService(): EntityLocalizationService<
+        ComponentGeneralInformationLocalizationKeys, 
+        EntityGeneralInformationLocalizationKeys
+    > {
+        const service: EntityLocalizationService<
+        ComponentGeneralInformationLocalizationKeys, 
+        EntityGeneralInformationLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['generalInformation']
+
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for General Information to exist.')
+        }
+
+        return service
     }
 
-    public getComponetGeneralInformationText(key: ComponentGeneralInformationLocalizationKeys): ReactNode {
-        return this.getCurrentLocalization().generalInformation.componentLocalization[key]
+    public getEmploymentLocalizationService(): EntityLocalizationService<
+        ComponentEmploymentLocalizationKeys, 
+        EntityEmploymentLocalizationKeys
+    > {
+        const service: EntityLocalizationService<
+        ComponentEmploymentLocalizationKeys, 
+        EntityEmploymentLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['employment']
+
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for Employment to exist.')
+        }
+
+        return service
     }
 
     private getCurrentLocalization(): Localization {
@@ -57,13 +92,5 @@ export class LocalizationService extends BaseService<Language> {
 
     public getCurrentLanguage(): Language {
         return this.currentLanguage
-    }
-
-    public getEntityEmploymentText(key: EntityEmploymentLocalizationKeys): ReactNode {
-        return this.getCurrentLocalization().employment.entityLocalization[key]
-    }
-
-    public getComponentEmploymentText(key: ComponentEmploymentLocalizationKeys): ReactNode {
-        return this.getCurrentLocalization().employment.componentLocalization[key]
     }
 }

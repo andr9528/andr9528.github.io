@@ -2,6 +2,7 @@ import { ThemeService } from "@/shared/services/theme-service";
 import { Divider, Grid, Paper, ThemeProvider } from "@mui/material";
 import { GeneralInformationSection } from "./components/general-information-section";
 import { EmploymentSection } from "./components/employment-section";
+import { ProfileSection } from "./components/profile-section";
 
 export function CV(): JSX.Element {
     const themeService: ThemeService = ThemeService.instance    
@@ -11,6 +12,7 @@ export function CV(): JSX.Element {
             <Paper elevation={8} sx={{margin: '20px', padding: '20px', height: '100%', display: 'flex'}}>
                     <Grid container width='100%'>
                         <Grid width={'69%'}>
+                            <ProfileSection/>
                             <EmploymentSection/>
                         </Grid>
                         <Grid width={'2%'} display={"grid"}>
