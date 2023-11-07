@@ -1,18 +1,21 @@
+import { Link, List, ListItem } from "@mui/material"
+import { ReactNode } from "react"
+
 export interface EntityEmploymentLocalization {
-    jobTitleApps4All: string
-    jobTitleTv2: string
-    workDescriptionApps4All: string
-    workDescriptionTv2: string
+    jobTitleApps4All: ReactNode
+    jobTitleTv2: ReactNode
+    workDescriptionApps4All: ReactNode
+    workDescriptionTv2: ReactNode
 }
 
 export type EntityEmploymentLocalizationKeys = keyof EntityEmploymentLocalization
 
 export interface ComponentEmploymentLocalization {
-    sectionHeader: string
-    joiningWord: string
-    currentEmployment: string
-    expectedEnd: string
-    workDescriptionLabel: string
+    sectionHeader: ReactNode
+    joiningWord: ReactNode
+    currentEmployment: ReactNode
+    expectedEnd: ReactNode
+    workDescriptionLabel: ReactNode
 }
 
 export type ComponentEmploymentLocalizationKeys = keyof ComponentEmploymentLocalization
@@ -32,12 +35,11 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
         In addition to this, i also develop some microserivces to support the mobile applications.
         The microservices was deployed to Google Cloud.        
         `,
-        workDescriptionTv2: 
-        `I was part of a team of developers who by use of SCRUM, developed on a number of internal tools, some of which are Open Source porjects. 
-            Some of the projects i have contributed to include the following.
-            - https://github.com/tv2/casparcg-cliptool
-            - https://github.com/tv2/sofie-server
-        `
+        workDescriptionTv2: createTv2WorkDescription(
+            `I was part of a team of developers who by use of SCRUM, developed on a number of internal tools, some of which are Open Source porjects. 
+        Some of the projects i have contributed to include the following.`
+        )
+        
     },
     componentLocalization: {
         sectionHeader: 'Employment History',
@@ -79,4 +81,22 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
         expectedEnd: 'Forvented slutning på ansættelse: ',
         workDescriptionLabel: 'Beskrivelse af Arbejdsopgaver:'
     }
+}
+
+function createTv2WorkDescription(baseText: string): ReactNode {
+    return <>
+        {baseText}
+    <List sx={{ listStyleType: 'disc', pl: 4 }}>
+        <ListItem sx={{ display: 'list-item' }}>
+            <Link href="https://github.com/tv2/casparcg-cliptool">
+            https://github.com/tv2/casparcg-cliptool
+            </Link>
+        </ListItem>
+        <ListItem sx={{ display: 'list-item' }}>
+            <Link href="https://github.com/tv2/sofie-server">
+            https://github.com/tv2/sofie-server
+            </Link>
+        </ListItem>
+    </List>
+    </>
 }

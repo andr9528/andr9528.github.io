@@ -8,7 +8,7 @@ export function GeneralInformationSection(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const generalInformation: GeneralInformationEntity = EntityGenerationService.instance.getGeneralInformationEntity()
     const fullName: string = `${generalInformation.firstName} ${generalInformation.middleName} ${generalInformation.lastName}`
-    const fullAddress: string = `${generalInformation.address}, ${generalInformation.postalNumber} ${generalInformation.city}, ${generalInformation.country}`
+    const fullAddress: string = `${generalInformation.address}, ${generalInformation.postalNumber} ${generalInformation.city}, ${localizationService.getEntityGeneralInformationText(generalInformation.countryKey)}`
 
     return (
         <Paper elevation={2} sx={{padding: '5px'}}>

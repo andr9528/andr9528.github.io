@@ -1,10 +1,11 @@
-import { Color, Typography, TypographyProps } from "@mui/material";
+import { Typography, TypographyProps } from "@mui/material";
+import { ReactNode } from "react";
 
 interface LabelledTypographyProps {
     labelProps?: TypographyProps
     mainProps?: TypographyProps
-    labelText: string
-    mainText: string
+    labelText: ReactNode
+    mainText: ReactNode
 }
 
 export function LabelledTypography(props: LabelledTypographyProps): JSX.Element {

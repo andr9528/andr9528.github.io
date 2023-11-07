@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react"
+import { Dispatch, ReactNode, SetStateAction } from "react"
 import { Localization, danishLocalization, englishLocalization } from "../localization/localization"
 import { HeaderLocalizationKeys } from "../localization/header"
 import { BaseService } from "./base-service"
@@ -39,15 +39,15 @@ export class LocalizationService extends BaseService<Language> {
     }
 
 
-    public getHeaderText(key: HeaderLocalizationKeys): string {
+    public getHeaderText(key: HeaderLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().header[key]
     }
 
-    public getEntityGeneralInformationText(key: EntityGeneralInformationLocalizationKeys): string {
+    public getEntityGeneralInformationText(key: EntityGeneralInformationLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().generalInformation.entityLocalization[key]
     }
 
-    public getComponetGeneralInformationText(key: ComponentGeneralInformationLocalizationKeys): string {
+    public getComponetGeneralInformationText(key: ComponentGeneralInformationLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().generalInformation.componentLocalization[key]
     }
 
@@ -59,11 +59,11 @@ export class LocalizationService extends BaseService<Language> {
         return this.currentLanguage
     }
 
-    public getEntityEmploymentText(key: EntityEmploymentLocalizationKeys): string {
+    public getEntityEmploymentText(key: EntityEmploymentLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().employment.entityLocalization[key]
     }
 
-    public getComponentEmploymentText(key: ComponentEmploymentLocalizationKeys): string {
+    public getComponentEmploymentText(key: ComponentEmploymentLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().employment.componentLocalization[key]
     }
 }

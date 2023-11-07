@@ -1,3 +1,5 @@
+import { EntityGeneralInformationLocalizationKeys } from "../localization/general-information-localization"
+
 export interface GeneralInformationEntity {
     firstName: string
     middleName: string
@@ -6,7 +8,7 @@ export interface GeneralInformationEntity {
     email: string
     dateOfBirth: Date
     city: string
-    country: string
+    countryKey: EntityGeneralInformationLocalizationKeys
     address: string
     postalNumber: number
 }
