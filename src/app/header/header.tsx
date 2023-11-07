@@ -1,13 +1,15 @@
 
-import { Box, Button, ButtonGroup, Divider, Grid, Paper, Theme, ThemeProvider, Typography } from '@mui/material';
+import { Button, ButtonGroup, Divider, Grid, Paper, Theme, ThemeProvider, Typography } from '@mui/material';
 import { Language, LocalizationService } from '../../shared/services/localization-service';
 import { CenteredBox } from '@/shared/components/centered-box';
 import { RightAlignedBox } from '@/shared/components/right-aligned-box';
 import { ThemeService } from '../../shared/services/theme-service';
+import { PrintingService } from '@/shared/services/printing-service';
 
 export function Header(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const themeService: ThemeService = ThemeService.instance
+    const printingService: PrintingService = PrintingService.instance
 
     return (
         <ThemeProvider theme={themeService.getTheme()}>
@@ -52,7 +54,7 @@ export function Header(): JSX.Element {
         localizationService.setLanguage(Language.ENGLISH)
     }
 
-    function printCv(): void {
-
+    async function printCv(): Promise<void> {
+        printingService.PrintPdf()
     }
 }
