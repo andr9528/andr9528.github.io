@@ -3,6 +3,7 @@ import { Divider, Grid, Paper, ThemeProvider } from "@mui/material";
 import { GeneralInformationSection } from "./components/general-information-section";
 import { EmploymentSection } from "./components/employment-section";
 import { ProfileSection } from "./components/profile-section";
+import { SkillsSection } from "./components/skills-section";
 
 export function CV(): JSX.Element {
     const themeService: ThemeService = ThemeService.instance    
@@ -20,6 +21,7 @@ export function CV(): JSX.Element {
                         </Grid>
                         <Grid width={'29%'}>
                             <GeneralInformationSection/>
+                            <SkillsSection/>
                         </Grid>                
                     </Grid>
             </Paper>

@@ -13,7 +13,7 @@ export function GeneralInformationSection(): JSX.Element {
         `${generalInformation.address}, ${generalInformation.postalNumber} ${generalInformation.city}, ${entityLocalizationService.getEntityText(generalInformation.countryKey)}`
 
     return (
-        <Paper elevation={2} sx={{padding: '5px'}}>
+        <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
             <Typography variant="h4" display={'flex'} justifyContent={"center"}>
                 {entityLocalizationService.getComponentText("sectionHeader")}
             </Typography>

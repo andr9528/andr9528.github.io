@@ -2,11 +2,10 @@
 import { Language, LocalizationService } from "@/shared/services/localization-service"
 import { Header } from "./header/header"
 import { useEffect, useState } from "react"
-import { CenteredBox } from "@/shared/components/centered-box"
 import { NavigationService, PageType } from "@/shared/services/navigation-service"
 import { About } from "./about/about"
 import { CV } from "./cv/cv"
-import { Stack } from "@mui/material"
+import { Box, Stack } from "@mui/material"
 import { usePDF } from "react-to-pdf"
 import { PrintingService } from "@/shared/services/printing-service"
 
@@ -24,9 +23,9 @@ export default function Page(): JSX.Element {
   return (
     <Stack height={'100%'} overflow={"hidden"} margin={0}>
       <Header/>
-      <div ref={targetRef}>
+      <Box ref={targetRef} paddingX={'10%'}>
         {getCurrentPageComponent()}        
-      </div>
+      </Box>
     </Stack>
   )
 

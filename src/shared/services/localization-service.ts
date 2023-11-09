@@ -3,7 +3,6 @@ import { Localization, LocalizationKeys, danishLocalization, englishLocalization
 import { HeaderLocalizationKeys } from "../localization/header-localization"
 import { BaseService } from "./base-service"
 import { ComponentGeneralInformationLocalizationKeys, EntityGeneralInformationLocalizationKeys } from "../localization/general-information-localization"
-import { GeneralInformationEntity } from "../entities/general-information-entity"
 import { ComponentEmploymentLocalizationKeys, EntityEmploymentLocalizationKeys } from "../localization/employment-localization"
 import { EntityLocalizationService } from "./value-objects/entity-localization-service"
 import { GeneralInformationLocalizationService } from "./entity-localization/general-information-localization-service"
@@ -11,6 +10,9 @@ import { UnexpectedUndefinedException } from "../exceptions/unexpected-undefined
 import { EmploymentLocalizationService } from "./entity-localization/employment-localization-service"
 import { ProfileLocalizationService } from "./entity-localization/profile-localization-service"
 import { ComponentProfileLocalizationKeys, EntityProfileLocalizationKeys } from "../localization/profile-localization"
+import { SkillsLocalizationService } from "./entity-localization/skills-localization-service"
+import { ComponentSkillsLocalizationKeys } from "../localization/skills-localization"
+import { EntitySkillsLocalizationKeys } from '@/shared/localization/skills-localization';
 
 export enum Language {
     ENGLISH = 'en',
@@ -35,8 +37,9 @@ export class LocalizationService extends BaseService<Language> {
             employment: new EmploymentLocalizationService(this.getCurrentLocalization.bind(this)),
             profile: new ProfileLocalizationService(this.getCurrentLocalization.bind(this)),
             education: undefined,
-            header: undefined
-        }
+            skills: new SkillsLocalizationService(this.getCurrentLocalization.bind(this)),
+            header: undefined,
+        }    
 
         console.info(`Finished constructing ${LocalizationService.name}.`)
     }
@@ -84,6 +87,22 @@ export class LocalizationService extends BaseService<Language> {
 
         if (!service) {
             throw new UnexpectedUndefinedException('Expected an Localization service for Employment to exist.')
+        }
+
+        return service
+    }
+
+    public getSkillsLocalizationService(): EntityLocalizationService<
+        ComponentSkillsLocalizationKeys, 
+        EntitySkillsLocalizationKeys
+    > {
+        const service: EntityLocalizationService<
+        ComponentSkillsLocalizationKeys, 
+        EntitySkillsLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['skills']
+
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for Skills to exist.')
         }
 
         return service
