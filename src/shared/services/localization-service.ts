@@ -13,6 +13,8 @@ import { ComponentProfileLocalizationKeys, EntityProfileLocalizationKeys } from 
 import { SkillsLocalizationService } from "./entity-localization/skills-localization-service"
 import { ComponentSkillsLocalizationKeys } from "../localization/skills-localization"
 import { EntitySkillsLocalizationKeys } from '@/shared/localization/skills-localization';
+import { LinksLocalizationService } from "./entity-localization/links-localization-service"
+import { ComponentLinksLocalizationKeys, EntityLinksLocalizationKeys } from "../localization/links-localization"
 
 export enum Language {
     ENGLISH = 'en',
@@ -38,6 +40,7 @@ export class LocalizationService extends BaseService<Language> {
             profile: new ProfileLocalizationService(this.getCurrentLocalization.bind(this)),
             education: undefined,
             skills: new SkillsLocalizationService(this.getCurrentLocalization.bind(this)),
+            links: new LinksLocalizationService(this.getCurrentLocalization.bind(this)),
             header: undefined,
         }    
 
@@ -123,6 +126,22 @@ export class LocalizationService extends BaseService<Language> {
 
         return service
     }
+
+    public getLinksLocalizationService(): EntityLocalizationService<
+    ComponentLinksLocalizationKeys, 
+    EntityLinksLocalizationKeys
+> {
+    const service: EntityLocalizationService<
+    ComponentLinksLocalizationKeys, 
+    EntityLinksLocalizationKeys
+    > | undefined = this.entittyLocalizationServices['links']
+
+    if (!service) {
+        throw new UnexpectedUndefinedException('Expected an Localization service for Links to exist.')
+    }
+
+    return service
+}
 
 
     private getCurrentLocalization(): Localization {

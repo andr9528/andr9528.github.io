@@ -4,6 +4,10 @@ import { GeneralInformationSection } from "./components/general-information-sect
 import { EmploymentSection } from "./components/employment-section";
 import { ProfileSection } from "./components/profile-section";
 import { SkillsSection } from "./components/skills-section";
+import { EducationSection } from "./components/education-section";
+import { ReferencesSection } from "./components/references-section";
+import { LinksSection } from "./components/links-section";
+import { LanguagesSection } from "./components/languages-section";
 
 export function CV(): JSX.Element {
     const themeService: ThemeService = ThemeService.instance    
@@ -15,13 +19,17 @@ export function CV(): JSX.Element {
                         <Grid width={'69%'}>
                             <ProfileSection/>
                             <EmploymentSection/>
+                            <EducationSection/>
+                            <ReferencesSection/>
                         </Grid>
                         <Grid width={'2%'} display={"grid"}>
                             <Divider orientation='vertical' sx={{marginX: '10px', borderRightWidth: 5, width: '1px', justifySelf: 'center'}}/>
                         </Grid>
                         <Grid width={'29%'}>
                             <GeneralInformationSection/>
+                            <LinksSection/>
                             <SkillsSection/>
+                            <LanguagesSection/>
                         </Grid>                
                     </Grid>
             </Paper>

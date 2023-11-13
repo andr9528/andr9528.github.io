@@ -14,11 +14,11 @@ export function SkillsSection(): JSX.Element {
             <Typography variant="h4" display={'flex'} justifyContent={"center"}>
                 {entityLocalizationService.getComponentText("sectionHeader")}
             </Typography>
-            {skills.map(skill => (<Skill skillEntity={skill} key={getRandomizedKey(skill)}/>))}
+            {skills.map(skill => (<Skill skillEntity={skill} key={getUniqueKey(skill)}/>))}
         </Paper>
         )
 
-    function getRandomizedKey(skill: SkillEntity): number {
-        return Math.floor(skill.importance * skill.level * Math.random())
+    function getUniqueKey(skill: SkillEntity): number {
+        return Math.floor(skill.importance * skill.level * skill.name.length)
     }
 }

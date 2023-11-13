@@ -4,6 +4,8 @@ import { EntityEmploymentLocalizationKeys } from "../localization/employment-loc
 import { LocalizationService } from "./localization-service"
 import { EntityGeneralInformationLocalizationKeys } from '../localization/general-information-localization';
 import { SkillEntity, SkillLevel } from "../entities/skill-entity";
+import { LinkEntity } from "../entities/link-entity";
+import { EntityLinksLocalizationKeys } from "../localization/links-localization";
 
 export class EntityGenerationService {
     public static instance: EntityGenerationService = new EntityGenerationService()
@@ -94,6 +96,11 @@ export class EntityGenerationService {
                 level: SkillLevel.Novice,
                 importance: 19
             },
+            {
+                name: 'SQL',
+                level: SkillLevel.Beginner,
+                importance: 30
+            },
         ].sort(this.sortSkill.bind(this)).reverse()
     }
 
@@ -110,5 +117,32 @@ export class EntityGenerationService {
             return -1
         }
         return 0
+    }
+
+    public getLinkEntities(): LinkEntity[] {
+        return [
+            {
+                titleKey: this.getEntityLinkLocalizationKey("titleGitHub"),
+                address: 'https://github.com/andr9528',
+                remarkKey: this.getEntityLinkLocalizationKey("remarkGitHub"),
+                importance: 100
+            },
+            {
+                titleKey: this.getEntityLinkLocalizationKey("titleLinkedIn"),
+                address: 'https://www.linkedin.com/in/andr%C3%A9-steenhoff-madsen-65a22698/',
+                remarkKey: this.getEntityLinkLocalizationKey("remarkLinkedIn"),
+                importance: 80
+            },
+            {
+                titleKey: this.getEntityLinkLocalizationKey("titlePersonalPage"),
+                address: 'https://andr9528.github.io/',
+                remarkKey: this.getEntityLinkLocalizationKey("remarkPersonalPage"),
+                importance: 90
+            },
+        ].sort((a, b) => a.importance - b.importance).reverse()
+    }
+
+    private getEntityLinkLocalizationKey(key: EntityLinksLocalizationKeys): EntityLinksLocalizationKeys {
+        return key
     }
 }
