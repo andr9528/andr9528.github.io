@@ -15,6 +15,8 @@ import { ComponentSkillsLocalizationKeys } from "../localization/skills-localiza
 import { EntitySkillsLocalizationKeys } from '@/shared/localization/skills-localization';
 import { LinksLocalizationService } from "./entity-localization/links-localization-service"
 import { ComponentLinksLocalizationKeys, EntityLinksLocalizationKeys } from "../localization/links-localization"
+import { ReferencesLocalizationService } from "./entity-localization/references-localization-service"
+import { ComponentReferencesLocalizationKeys, EntityReferencesLocalizationKeys } from "../localization/references-localization"
 
 export enum Language {
     ENGLISH = 'en',
@@ -41,6 +43,7 @@ export class LocalizationService extends BaseService<Language> {
             education: undefined,
             skills: new SkillsLocalizationService(this.getCurrentLocalization.bind(this)),
             links: new LinksLocalizationService(this.getCurrentLocalization.bind(this)),
+            references: new ReferencesLocalizationService(this.getCurrentLocalization.bind(this)),
             header: undefined,
         }    
 
@@ -130,18 +133,34 @@ export class LocalizationService extends BaseService<Language> {
     public getLinksLocalizationService(): EntityLocalizationService<
     ComponentLinksLocalizationKeys, 
     EntityLinksLocalizationKeys
-> {
-    const service: EntityLocalizationService<
-    ComponentLinksLocalizationKeys, 
-    EntityLinksLocalizationKeys
-    > | undefined = this.entittyLocalizationServices['links']
+    > {
+        const service: EntityLocalizationService<
+        ComponentLinksLocalizationKeys, 
+        EntityLinksLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['links']
 
-    if (!service) {
-        throw new UnexpectedUndefinedException('Expected an Localization service for Links to exist.')
-    }
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for Links to exist.')
+        }
 
-    return service
+        return service
 }
+
+    public getReferencesLocalizationService(): EntityLocalizationService<
+    ComponentReferencesLocalizationKeys, 
+    EntityReferencesLocalizationKeys
+    > {
+        const service: EntityLocalizationService<
+        ComponentReferencesLocalizationKeys, 
+        EntityReferencesLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['references']
+
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for References to exist.')
+        }
+
+        return service
+    }
 
 
     private getCurrentLocalization(): Localization {

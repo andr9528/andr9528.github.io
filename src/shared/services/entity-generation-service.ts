@@ -6,6 +6,8 @@ import { EntityGeneralInformationLocalizationKeys } from '../localization/genera
 import { SkillEntity, SkillLevel } from "../entities/skill-entity";
 import { LinkEntity } from "../entities/link-entity";
 import { EntityLinksLocalizationKeys } from "../localization/links-localization";
+import { ReferenceEntity } from "../entities/reference-entity";
+import { EntityReferencesLocalizationKeys } from "../localization/references-localization";
 
 export class EntityGenerationService {
     public static instance: EntityGenerationService = new EntityGenerationService()
@@ -143,6 +145,21 @@ export class EntityGenerationService {
     }
 
     private getEntityLinkLocalizationKey(key: EntityLinksLocalizationKeys): EntityLinksLocalizationKeys {
+        return key
+    }
+
+    public getReferencesEntities(): ReferenceEntity[] {
+        return [
+            {
+                name: 'Henrik Dudek',
+                companyNameKey: this.getEntityReferenceLocalizationKey("companyNameTv2"),
+                email: 'hedu@tv2.dk',                
+                importance: 100,
+            }
+        ].sort((a, b) => a.importance - b.importance).reverse()
+    }
+    
+    private getEntityReferenceLocalizationKey(key: EntityReferencesLocalizationKeys): EntityReferencesLocalizationKeys {
         return key
     }
 }
