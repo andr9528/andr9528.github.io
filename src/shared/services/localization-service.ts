@@ -17,6 +17,8 @@ import { LinksLocalizationService } from "./entity-localization/links-localizati
 import { ComponentLinksLocalizationKeys, EntityLinksLocalizationKeys } from "../localization/links-localization"
 import { ReferencesLocalizationService } from "./entity-localization/references-localization-service"
 import { ComponentReferencesLocalizationKeys, EntityReferencesLocalizationKeys } from "../localization/references-localization"
+import { LanguageLocalizationService } from "./entity-localization/language-localization-service"
+import { ComponentLanguageLocalizationKeys, EntityLanguageLocalizationKeys } from "../localization/language-localization"
 
 export enum Language {
     ENGLISH = 'en',
@@ -44,6 +46,7 @@ export class LocalizationService extends BaseService<Language> {
             skills: new SkillsLocalizationService(this.getCurrentLocalization.bind(this)),
             links: new LinksLocalizationService(this.getCurrentLocalization.bind(this)),
             references: new ReferencesLocalizationService(this.getCurrentLocalization.bind(this)),
+            language: new LanguageLocalizationService(this.getCurrentLocalization.bind(this)),
             header: undefined,
         }    
 
@@ -157,6 +160,22 @@ export class LocalizationService extends BaseService<Language> {
 
         if (!service) {
             throw new UnexpectedUndefinedException('Expected an Localization service for References to exist.')
+        }
+
+        return service
+    }
+
+    public getLanguageLocalizationService(): EntityLocalizationService<
+    ComponentLanguageLocalizationKeys, 
+    EntityLanguageLocalizationKeys
+    > {
+        const service: EntityLocalizationService<
+        ComponentLanguageLocalizationKeys, 
+        EntityLanguageLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['language']
+
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for Language to exist.')
         }
 
         return service

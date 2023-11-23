@@ -66,12 +66,9 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
         Dertil udviklet jeg også nogle Microservicer til at understøtte mobil applikationerne.
         Microservicerne blev sat i funktion via Google Cloud.        
         `,
-        workDescriptionTv2: 
+        workDescriptionTv2: createTv2WorkDescription(
         `Jeg deltog i et team af udviklere hvor vi ved brug af SCRUM, udviklet og forbedret på en række interne værktøjer, hvor nogle af dem er Open Source. 
-         Nogle af de Open Source projekter som jeg har bidraget til er de følgende.
-         - https://github.com/tv2/casparcg-cliptool 
-         - https://github.com/tv2/sofie-server
-        `
+         Nogle af de Open Source projekter som jeg har bidraget til er de følgende.`)
     },
     componentLocalization: {
         ...defaultEmploymentLocalization.componentLocalization,

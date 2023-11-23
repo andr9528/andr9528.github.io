@@ -14,7 +14,7 @@ export function SkillsSection(): JSX.Element {
             <Typography variant="h4" display={'flex'} justifyContent={"center"}>
                 {entityLocalizationService.getComponentText("sectionHeader")}
             </Typography>
-            {skills.map(skill => (<Skill skillEntity={skill} key={getUniqueKey(skill)}/>))}
+            {skills.map(entity => (<Skill skillEntity={entity} key={getUniqueKey(entity)}/>))}
         </Paper>
         )
 

@@ -1,3 +1,5 @@
+import { Importance } from "./common"
+
 export enum SkillLevel {
     Novice = 1,
     Beginner = 2,
@@ -6,8 +8,7 @@ export enum SkillLevel {
     Expert = 5
 }
 
-export interface SkillEntity {
+export interface SkillEntity extends Importance {
     level: SkillLevel
-    importance: number
     name: string
 }

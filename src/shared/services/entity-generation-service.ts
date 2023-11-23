@@ -8,6 +8,9 @@ import { LinkEntity } from "../entities/link-entity";
 import { EntityLinksLocalizationKeys } from "../localization/links-localization";
 import { ReferenceEntity } from "../entities/reference-entity";
 import { EntityReferencesLocalizationKeys } from "../localization/references-localization";
+import { LanguageEntity, LanguageLevel } from "../entities/language-entity";
+import { EntityLanguageLocalizationKeys } from "../localization/language-localization";
+import { Importance } from "../entities/common";
 
 export class EntityGenerationService {
     public static instance: EntityGenerationService = new EntityGenerationService()
@@ -113,6 +116,10 @@ export class EntityGenerationService {
             return -1
         }
 
+        return this.sortImportance(a, b)
+    }
+
+    private sortImportance(a: Importance, b: Importance) {
         if (a.importance > b.importance) {
             return 1
         } else if (a.importance < b.importance) {
@@ -156,10 +163,39 @@ export class EntityGenerationService {
                 email: 'hedu@tv2.dk',                
                 importance: 100,
             }
-        ].sort((a, b) => a.importance - b.importance).reverse()
+        ].sort((a, b) => this.sortImportance(a, b)).reverse()
     }
     
     private getEntityReferenceLocalizationKey(key: EntityReferencesLocalizationKeys): EntityReferencesLocalizationKeys {
         return key
+    }
+
+    public getLanguageEntities(): LanguageEntity[] {
+        return [
+            {
+                nameKey: this.getEntityLanguageLocalizationKey("danishLanguage"),
+                level: LanguageLevel.NATIVE_SPEAKER,
+                importance: 20
+            },
+            {
+                nameKey: this.getEntityLanguageLocalizationKey("englishLanguage"),
+                level: LanguageLevel.HIGHLY_PROFICIENT,
+                importance: 16
+            }
+        ].sort((a, b) => this.sortLanguage(a, b)).reverse()
+    }
+
+    private getEntityLanguageLocalizationKey(key: EntityLanguageLocalizationKeys): EntityLanguageLocalizationKeys {
+        return key
+    }
+
+    private sortLanguage(a: LanguageEntity, b: LanguageEntity): number {
+        if (a.level > b.level) {
+            return 1
+        } else if (a.level < b.level) {
+            return -1
+        }
+
+        return this.sortImportance(a, b)
     }
 }
