@@ -44,7 +44,7 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
     componentLocalization: {
         sectionHeader: 'Employment History',
         joiningWord: 'at',
-        currentEmployment: 'Current Employment',
+        currentEmployment: 'Current employment',
         expectedEnd: 'Expected end of employment: ',
         workDescriptionLabel: 'Description of Performed Work:'
     }

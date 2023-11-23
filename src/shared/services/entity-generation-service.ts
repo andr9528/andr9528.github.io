@@ -10,7 +10,9 @@ import { ReferenceEntity } from "../entities/reference-entity";
 import { EntityReferencesLocalizationKeys } from "../localization/references-localization";
 import { LanguageEntity, LanguageLevel } from "../entities/language-entity";
 import { EntityLanguageLocalizationKeys } from "../localization/language-localization";
-import { Importance } from "../entities/common";
+import { Importance, Periode } from "../entities/common";
+import { EducationEntity } from "../entities/education-entity";
+import { EntityEducationLocalizationKeys } from "../localization/education-localization";
 
 export class EntityGenerationService {
     public static instance: EntityGenerationService = new EntityGenerationService()
@@ -40,7 +42,7 @@ export class EntityGenerationService {
     }
 
     public getEmploymentEntities(): EmploymentEntity[] {
-        return [
+        const entities: EmploymentEntity[] = [
             {
                 jobTitleKey: this.getEntityEmploymentLocalizationKey("jobTitleApps4All"),
                 startDate: new Date(2020, 9, 1),
@@ -57,7 +59,13 @@ export class EntityGenerationService {
                 city: 'Odense',
                 workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionTv2")
             }
-        ].sort((a, b) => a.startDate.getTime() - b.startDate.getTime()).reverse()
+        ]
+
+        return entities.sort((a, b) => this.sortPeriode(a, b)).reverse()
+    }
+
+    private sortPeriode(a: Periode, b: Periode): number {
+        return a.startDate.getTime() - b.startDate.getTime()
     }
 
     private getEntityEmploymentLocalizationKey(key: EntityEmploymentLocalizationKeys): EntityEmploymentLocalizationKeys {
@@ -65,7 +73,7 @@ export class EntityGenerationService {
     }
 
     public getSkillsEntities(): SkillEntity[] {
-        return [
+        const entities: SkillEntity[] = [
             {
                 name: 'C#',
                 level: SkillLevel.Experienced,
@@ -106,7 +114,9 @@ export class EntityGenerationService {
                 level: SkillLevel.Beginner,
                 importance: 30
             },
-        ].sort(this.sortSkill.bind(this)).reverse()
+        ]
+
+        return entities.sort((a,b) => this.sortSkill(a, b)).reverse()
     }
 
     private sortSkill(a: SkillEntity, b: SkillEntity): number {
@@ -129,7 +139,7 @@ export class EntityGenerationService {
     }
 
     public getLinkEntities(): LinkEntity[] {
-        return [
+        const entities: LinkEntity[] =  [
             {
                 titleKey: this.getEntityLinkLocalizationKey("titleGitHub"),
                 address: 'https://github.com/andr9528',
@@ -148,7 +158,9 @@ export class EntityGenerationService {
                 remarkKey: this.getEntityLinkLocalizationKey("remarkPersonalPage"),
                 importance: 90
             },
-        ].sort((a, b) => a.importance - b.importance).reverse()
+        ]
+
+        return entities.sort((a, b) => this.sortImportance(a, b)).reverse()
     }
 
     private getEntityLinkLocalizationKey(key: EntityLinksLocalizationKeys): EntityLinksLocalizationKeys {
@@ -156,14 +168,16 @@ export class EntityGenerationService {
     }
 
     public getReferencesEntities(): ReferenceEntity[] {
-        return [
+        const entities: ReferenceEntity[] = [
             {
                 name: 'Henrik Dudek',
                 companyNameKey: this.getEntityReferenceLocalizationKey("companyNameTv2"),
                 email: 'hedu@tv2.dk',                
                 importance: 100,
             }
-        ].sort((a, b) => this.sortImportance(a, b)).reverse()
+        ]
+
+        return entities.sort((a, b) => this.sortImportance(a, b)).reverse()
     }
     
     private getEntityReferenceLocalizationKey(key: EntityReferencesLocalizationKeys): EntityReferencesLocalizationKeys {
@@ -171,7 +185,7 @@ export class EntityGenerationService {
     }
 
     public getLanguageEntities(): LanguageEntity[] {
-        return [
+        const entities: LanguageEntity[] = [
             {
                 nameKey: this.getEntityLanguageLocalizationKey("danishLanguage"),
                 level: LanguageLevel.NATIVE_SPEAKER,
@@ -182,7 +196,9 @@ export class EntityGenerationService {
                 level: LanguageLevel.HIGHLY_PROFICIENT,
                 importance: 16
             }
-        ].sort((a, b) => this.sortLanguage(a, b)).reverse()
+        ]
+        
+        return entities.sort((a, b) => this.sortLanguage(a, b)).reverse()
     }
 
     private getEntityLanguageLocalizationKey(key: EntityLanguageLocalizationKeys): EntityLanguageLocalizationKeys {
@@ -197,5 +213,39 @@ export class EntityGenerationService {
         }
 
         return this.sortImportance(a, b)
+    }
+
+    public getEducationEntities(): EducationEntity[] {
+        const entities: EducationEntity[] = [
+            {
+                city: 'Odense',
+                schoolName: 'University College Lillebælt',
+                descriptionKey: this.getEntityEducationLocalizationKey("descriptionBachelor"),
+                gradeKey: this.getEntityEducationLocalizationKey("gradeBachelor"),
+                startDate: new Date(2019, 1, 1),
+                endDate: new Date(2020, 5, 19)
+            },
+            {
+                city: 'Odense',
+                schoolName: 'University College Lillebælt',
+                descriptionKey: this.getEntityEducationLocalizationKey("descriptionSoftware"),
+                gradeKey: this.getEntityEducationLocalizationKey("gradeSoftware"),
+                startDate: new Date(2016, 8, 1),
+                endDate: new Date(2019, 0, 31)
+            },
+            {
+                city: 'Svendborg',
+                schoolName: 'Svendborg Erhversskole',
+                descriptionKey: this.getEntityEducationLocalizationKey("descriptionHtx"),
+                gradeKey: this.getEntityEducationLocalizationKey("gradeHtx"),
+                startDate: new Date(2013, 8, 1),
+                endDate: new Date(2016, 5, 17)
+            }                        
+        ]
+        return entities.sort((a, b) => this.sortPeriode(a, b)).reverse()
+    }
+
+    private getEntityEducationLocalizationKey(key: EntityEducationLocalizationKeys): EntityEducationLocalizationKeys {
+        return key
     }
 }

@@ -1,4 +1,4 @@
-import { EducationLocalization, englishEducationLocalization } from "./education-localization";
+import { EducationLocalization, danishEducationLocalization, englishEducationLocalization } from "./education-localization";
 import { EmploymentLocalization, danishEmploymentLocalization, englishEmploymentLocalization } from "./employment-localization";
 import { GeneralInformationLocalization, danishGeneralLocalization, englishGeneralLocalization } from "./general-information-localization";
 import { HeaderLocalization, danishHeaderLocalization, englishHeaderLocalization } from "./header-localization";
@@ -26,7 +26,7 @@ export const danishLocalization: Localization = {
     generalInformation: danishGeneralLocalization,
     header: danishHeaderLocalization,
     employment: danishEmploymentLocalization,
-    education: danishEmploymentLocalization,
+    education: danishEducationLocalization,
     skills: danishSkillsLocalization,
     profile: danishProfileLocalization,
     links: danishLinksLocalization,

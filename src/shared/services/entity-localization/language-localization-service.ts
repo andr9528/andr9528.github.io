@@ -4,10 +4,10 @@ import { BaseEntityLocalizationSerive } from "./base-entity-localization-service
 import { ReactNode } from "react";
 
 export class LanguageLocalizationService extends BaseEntityLocalizationSerive implements EntityLocalizationService<ComponentLanguageLocalizationKeys, EntityLanguageLocalizationKeys> {
-    getEntityText(key: EntityLanguageLocalizationKeys): ReactNode {
+    public getEntityText(key: EntityLanguageLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().language.entityLocalization[key]
     }
-    getComponentText(key: ComponentLanguageLocalizationKeys): ReactNode {
+    public getComponentText(key: ComponentLanguageLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().language.componentLocalization[key]
     }
 

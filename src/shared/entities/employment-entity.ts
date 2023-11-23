@@ -1,10 +1,8 @@
 import { EntityEmploymentLocalizationKeys } from "../localization/employment-localization"
+import { Location, Periode } from "./common"
 
-export interface EmploymentEntity {
+export interface EmploymentEntity extends Periode, Location {
     jobTitleKey: EntityEmploymentLocalizationKeys
-    startDate: Date
-    endDate?: Date
     employer: string
-    city: string
     workDescriptionKey: EntityEmploymentLocalizationKeys
 }

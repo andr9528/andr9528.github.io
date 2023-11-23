@@ -19,6 +19,8 @@ import { ReferencesLocalizationService } from "./entity-localization/references-
 import { ComponentReferencesLocalizationKeys, EntityReferencesLocalizationKeys } from "../localization/references-localization"
 import { LanguageLocalizationService } from "./entity-localization/language-localization-service"
 import { ComponentLanguageLocalizationKeys, EntityLanguageLocalizationKeys } from "../localization/language-localization"
+import { ComponentEducationLocalizationKeys, EntityEducationLocalizationKeys } from "../localization/education-localization"
+import { EducationLocalizationService } from "./entity-localization/education-localization-service"
 
 export enum Language {
     ENGLISH = 'en',
@@ -42,7 +44,7 @@ export class LocalizationService extends BaseService<Language> {
             generalInformation: new GeneralInformationLocalizationService(this.getCurrentLocalization.bind(this)),
             employment: new EmploymentLocalizationService(this.getCurrentLocalization.bind(this)),
             profile: new ProfileLocalizationService(this.getCurrentLocalization.bind(this)),
-            education: undefined,
+            education: new EducationLocalizationService(this.getCurrentLocalization.bind(this)),
             skills: new SkillsLocalizationService(this.getCurrentLocalization.bind(this)),
             links: new LinksLocalizationService(this.getCurrentLocalization.bind(this)),
             references: new ReferencesLocalizationService(this.getCurrentLocalization.bind(this)),
@@ -176,6 +178,22 @@ export class LocalizationService extends BaseService<Language> {
 
         if (!service) {
             throw new UnexpectedUndefinedException('Expected an Localization service for Language to exist.')
+        }
+
+        return service
+    }
+
+    public getEducationLocalizationService(): EntityLocalizationService<
+    ComponentEducationLocalizationKeys, 
+    EntityEducationLocalizationKeys
+    > {
+        const service: EntityLocalizationService<
+        ComponentEducationLocalizationKeys, 
+        EntityEducationLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['education']
+
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for Education to exist.')
         }
 
         return service
