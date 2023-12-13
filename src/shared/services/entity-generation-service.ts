@@ -1,6 +1,6 @@
 import { EmploymentEntity } from "../entities/employment-entity"
 import { GeneralInformationEntity } from "../entities/general-information-entity"
-import { EntityEmploymentLocalizationKeys } from "../localization/employment-localization"
+import { ComponentEmploymentLocalizationKeys, EntityEmploymentLocalizationKeys } from "../localization/employment-localization"
 import { LocalizationService } from "./localization-service"
 import { EntityGeneralInformationLocalizationKeys } from '../localization/general-information-localization';
 import { SkillEntity, SkillLevel } from "../entities/skill-entity";
@@ -47,18 +47,29 @@ export class EntityGenerationService {
                 jobTitleKey: this.getEntityEmploymentLocalizationKey("jobTitleApps4All"),
                 startDate: new Date(2020, 9, 1),
                 endDate: new Date(2020, 11, 31),
-                employer: 'Apps4All',
+                employerKey: this.getEntityEmploymentLocalizationKey("employerApps4All"),
                 city: 'Svendborg',
-                workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionApps4All")
+                workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionApps4All"),
+                joiningWordKey: this.getComponentEmploymentLocalizationKey("joiningWord1")
             },
             {
                 jobTitleKey: this.getEntityEmploymentLocalizationKey("jobTitleTv2"),                 
                 startDate: new Date(2022, 3, 1),
                 endDate: new Date(2023, 11, 31),
-                employer: 'Tv2 Danmark',
+                employerKey: this.getEntityEmploymentLocalizationKey("employerTv2"),
                 city: 'Odense',
-                workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionTv2")
+                workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionTv2"),
+                joiningWordKey: this.getComponentEmploymentLocalizationKey("joiningWord1")
+            },
+            {
+                jobTitleKey: this.getEntityEmploymentLocalizationKey("jobTitleOwn"),                 
+                startDate: new Date(2024, 0, 1),
+                employerKey: this.getEntityEmploymentLocalizationKey("employerOwn"),
+                city: 'Odense',
+                workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionOwn"),
+                joiningWordKey: this.getComponentEmploymentLocalizationKey("joiningWord2")
             }
+
         ]
 
         return entities.sort((a, b) => this.sortPeriode(a, b)).reverse()
@@ -69,6 +80,10 @@ export class EntityGenerationService {
     }
 
     private getEntityEmploymentLocalizationKey(key: EntityEmploymentLocalizationKeys): EntityEmploymentLocalizationKeys {
+        return key
+    }
+
+    private getComponentEmploymentLocalizationKey(key: ComponentEmploymentLocalizationKeys): ComponentEmploymentLocalizationKeys {
         return key
     }
 

@@ -32,8 +32,8 @@ export function Employment(props: EmploymentProps): JSX.Element {
 
     function buildEmployedAsAtString(): string {
         const title: ReactNode = entityLocalizationService.getEntityText(props.employmentEntity.jobTitleKey)
-        const joiningWord: ReactNode = entityLocalizationService.getComponentText('joiningWord')
-        const employer: string = props.employmentEntity.employer
+        const joiningWord: ReactNode = entityLocalizationService.getComponentText(props.employmentEntity.joiningWordKey)
+        const employer: ReactNode = entityLocalizationService.getEntityText(props.employmentEntity.employerKey)
         const city: string = props.employmentEntity.city
 
         return `${title} ${joiningWord} ${employer}, ${city}`
@@ -42,6 +42,11 @@ export function Employment(props: EmploymentProps): JSX.Element {
     function buildEmploymentPeriodeString(): string {
         const start: string = getLocalizedDate(props.employmentEntity.startDate)
         
+        if (isDateInFuture(props.employmentEntity.startDate)) {
+            const expectedStart: ReactNode = entityLocalizationService.getComponentText('exptectedStart')
+            return `${expectedStart} ${start}`
+        }
+
         if (props.employmentEntity.endDate && isDateInFuture(props.employmentEntity.endDate)) {
             const currentEmplyment: ReactNode = entityLocalizationService.getComponentText('currentEmployment')
             const expectedEnd: ReactNode = entityLocalizationService.getComponentText('expectedEnd')
