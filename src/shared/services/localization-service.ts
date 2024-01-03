@@ -35,7 +35,7 @@ export class LocalizationService extends BaseService<Language> {
 
     private constructor() {
         super()
-        this.currentLanguage = Language.ENGLISH
+        this.currentLanguage = Language.DANISH
         this.localizations = {
             da: danishLocalization,
             en: englishLocalization
