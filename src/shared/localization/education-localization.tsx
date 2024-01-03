@@ -61,10 +61,10 @@ export const danishEducationLocalization: EducationLocalization = {
     },
     componentLocalization: {
         ...defaultEducationLocalization.componentLocalization,
-        sectionHeader: 'Uddanelse',
-        currentEducation: 'Nuværdende uddanelse',
-        expectedEnd: 'Forvented afslutning af uddanelse:',
-        educationDescriptionLabel: 'Uddanelse beskrivelse:',
+        sectionHeader: 'Uddannelse',
+        currentEducation: 'Nuværdende uddannelse',
+        expectedEnd: 'Forventet afslutning af uddannelse:',
+        educationDescriptionLabel: 'Uddannelse beskrivelse:',
         joiningWord: 'ved'
     }
 }
