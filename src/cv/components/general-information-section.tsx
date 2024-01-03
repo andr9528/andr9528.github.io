@@ -1,7 +1,7 @@
 import { GeneralInformationEntity } from "@/shared/entities/general-information-entity";
 import { EntityGenerationService } from "@/shared/services/entity-generation-service";
 import { Paper, Typography } from "@mui/material";
-import { LocalizationService } from '../../../shared/services/localization-service';
+import { LocalizationService } from '../../shared/services/localization-service';
 import { LabelledTypography } from "@/shared/components/labelled-typography";
 
 export function GeneralInformationSection(): JSX.Element {

@@ -1,9 +1,8 @@
-import { Options } from "react-to-pdf";
 import { UnexpectedUndefinedException } from "../exceptions/unexpected-undefined-exception";
 
 export class PrintingService {
     public static instance: PrintingService = new PrintingService()
-    private printPdfFunction?: (options?: Options) => void
+    private printPdfFunction?: () => void
 
     public PrintPdf(): void {
         this.assertPrintPdfFunctionNotUndefined(this.PrintPdf.name)
@@ -16,7 +15,7 @@ export class PrintingService {
         }
     }
 
-    public setupPrintingService(printPdf: (options?: Options) => void) {
+    public setupPrintingService(printPdf: () => void) {
         this.printPdfFunction = printPdf
     }
 }
