@@ -5,13 +5,14 @@ export class PrintingService {
     private printPdfFunction?: () => void
 
     public PrintPdf(): void {
+        console.info('Attempting to print PDF...')
         this.assertPrintPdfFunctionNotUndefined(this.PrintPdf.name)
         this.printPdfFunction!()
     }
 
     private assertPrintPdfFunctionNotUndefined(caller: string): void {
         if (!this.printPdfFunction) {
-            throw new UnexpectedUndefinedException(`Expected 'printPdfFunction' to be set durring ${caller}.`)
+            throw new UnexpectedUndefinedException(`Expected 'printPdfFunction' to be set before calling ${caller}.`)
         }
     }
 

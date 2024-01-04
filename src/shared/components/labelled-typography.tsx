@@ -14,7 +14,7 @@ export function LabelledTypography(props: LabelledTypographyProps): JSX.Element 
     return (
         <>
             <Typography {...labelProps}>{props.labelText}</Typography>
-            <Typography {...props.mainProps}>{props.mainText}</Typography>
+            <Typography component={'span'} {...props.mainProps}>{props.mainText}</Typography>
         </>
         )
 }

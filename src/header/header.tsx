@@ -47,14 +47,17 @@ export function Header(): JSX.Element {
     )
 
     function setLanguageToDanish(): void {
+        console.debug('Setting language to Danish')
         localizationService.setLanguage(Language.DANISH)
     }
 
     function setLanguageToEnglish(): void {
+        console.debug('Setting language to English')
         localizationService.setLanguage(Language.ENGLISH)
     }
 
     async function printCv(): Promise<void> {
+        console.debug('Print clicked')
         printingService.PrintPdf()
     }
 }

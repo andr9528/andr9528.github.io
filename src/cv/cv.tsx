@@ -12,21 +12,16 @@ export function CV(): JSX.Element {
 
     return (
         <>
-            <WebCv/>
-            <PortalDocument
+            {/* <WebCv/> */}
+            <Document
                 ref={documentRef} 
                 header={<></>} 
                 footer={<Pagination/>}
-                // screen={() => (<WebCv/>)}
-                // renderOnInit={false}
-                configuration={{
-                    pagination: {
-                        format: '#p / #t'
-                    }
-                }}
+                screen={() => (<WebCv/>)}
+                renderOnInit={false}
                 >
                     <PdfCv/>
-            </PortalDocument>    
+            </Document>    
         </>    
     )
 }
