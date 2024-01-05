@@ -1,12 +1,12 @@
-"use client"
 import { Language, LocalizationService } from "@/shared/services/localization-service"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Box, Stack } from "@mui/material"
 import { Header } from "@/header/header"
 import { Router } from "./router"
 import { Providers } from "./providers"
+import { DocumentRef, PortalDocument, PrinterProvider } from "react-pdf-printer"
 
-export default function Page(): JSX.Element {
+export default function App(): JSX.Element {
   const [language, setLanguage] = useState(Language.DANISH) // Initial value doesn't matter, as the language specified in 'LocalizationService' is the one used.
 
   useEffect(() => {

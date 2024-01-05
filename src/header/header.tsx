@@ -1,4 +1,3 @@
-
 import { Button, ButtonGroup, Divider, Grid, Paper, Theme, ThemeProvider, Typography } from '@mui/material';
 import { Language, LocalizationService } from '../shared/services/localization-service';
 import { CenteredBox } from '@/shared/components/centered-box';

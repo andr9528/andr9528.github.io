@@ -1,5 +1,4 @@
 // Template file whose content can be copied for when creating a new localization file.
-
 import { ReactNode } from "react"
 
 export interface EntityTemplateLocalization {

@@ -8,20 +8,21 @@ export function CV(): JSX.Element {
     const documentRef = useRef<DocumentRef>(null);
     useEffect(() => {
         PrintingService.instance.setupPrintingService(() => documentRef.current?.render())
-    }, [])
+        console.debug(documentRef)
+    }, [documentRef])
 
     return (
         <>
-            {/* <WebCv/> */}
             <Document
-                ref={documentRef} 
+                ref={documentRef}
                 header={<></>} 
                 footer={<Pagination/>}
                 screen={() => (<WebCv/>)}
                 renderOnInit={false}
                 >
                     <PdfCv/>
-            </Document>    
+            </Document>
+            {/* <WebCv/> */}
         </>    
     )
 }

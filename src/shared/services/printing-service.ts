@@ -13,7 +13,9 @@ export class PrintingService {
     private assertPrintPdfFunctionNotUndefined(caller: string): void {
         if (!this.printPdfFunction) {
             throw new UnexpectedUndefinedException(`Expected 'printPdfFunction' to be set before calling ${caller}.`)
-        }
+        } else {
+            console.debug('Print function is set')
+        }        
     }
 
     public setupPrintingService(printPdf: () => void) {

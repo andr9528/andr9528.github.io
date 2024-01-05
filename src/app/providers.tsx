@@ -10,10 +10,11 @@ export function Providers(props: ProvidersProps): JSX.Element {
     const themeService: ThemeService = ThemeService.instance    
     
     return (
-    <PrinterProvider configuration={{ useAsync: true, pagination: { format: '#p / #t' } }}>
-        <ThemeProvider theme={themeService.getTheme()}> 
+    <ThemeProvider theme={themeService.getTheme()}>
+        <PrinterProvider configuration={{ useAsync: true}}>                
             {props.children}
-        </ThemeProvider>
-    </PrinterProvider>
+        </PrinterProvider>
+    </ThemeProvider>
+
     )
 }
