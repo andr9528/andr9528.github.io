@@ -1,4 +1,4 @@
-import { DocumentRef, Pages, Pagination, PortalDocument, Document, usePrinter } from "react-pdf-printer";
+import { DocumentRef, Pages, Pagination, PortalDocument, Document, usePrinter, Page } from "react-pdf-printer";
 import { EducationSection } from "./components/education-section";
 import { EmploymentSection } from "./components/employment-section";
 import { GeneralInformationSection } from "./components/general-information-section";
@@ -7,9 +7,7 @@ import { LinksSection } from "./components/links-section";
 import { ProfileSection } from "./components/profile-section";
 import { ReferencesSection } from "./components/references-section";
 import { SkillsSection } from "./components/skills-section";
-import { useEffect, useRef } from "react";
-import { useNavigate } from 'react-router-dom';
-import { Box } from "@mui/material";
+import { useRef } from "react";
 import { OverflowStack } from "@/shared/components/overflow-stack";
 
 export function PrintCv(): JSX.Element {
@@ -20,18 +18,22 @@ export function PrintCv(): JSX.Element {
             ref={documentRef}
             header={<></>} 
             footer={<Pagination/>}
-            renderOnInit={false}
+            renderOnInit={true}
             screen={<></>}
         >
             <OverflowStack>
-                <GeneralInformationSection/>
-                <ProfileSection/>
+                <Page>
+                    <GeneralInformationSection/>
+                    <ProfileSection/>
+                </Page>                
                 <EmploymentSection/>
                 <EducationSection/>
                 <SkillsSection/>
-                <LanguagesSection/>
-                <ReferencesSection/>
-                <LinksSection/>
+                <Page>
+                    <LanguagesSection/>
+                    <ReferencesSection/>
+                    <LinksSection/>
+                </Page>
             </OverflowStack>
         </Document>
     )

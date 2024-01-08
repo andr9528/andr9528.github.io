@@ -19,16 +19,10 @@ export function LanguagesSection(): JSX.Element {
 
     function getPrinterLayout(): JSX.Element {
         return (
-            <>
-                <Page>
-                    {getSectionHeader()}
-                </Page>
-                <Box data-printer-divisible={isPrinter}>
-                    <Pages>
-                        {getLanguageComponents()}
-                    </Pages>
-                </Box>
-            </>
+            <Page>
+                {getSectionHeader()}
+                {getLanguageComponents()}
+            </Page>
         )
     }
 

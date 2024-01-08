@@ -23,7 +23,7 @@ export function ReferencesSection(): JSX.Element {
                 <Page>
                     {getSectionHeader()}
                 </Page>
-                <Box data-printer-divisible={isPrinter}>
+                <Box data-printer-divisible={false}>
                     <Pages>
                         {getLinkComponents()}
                     </Pages>
