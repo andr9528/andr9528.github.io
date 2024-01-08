@@ -50,7 +50,7 @@ export const danishGeneralLocalization: GeneralInformationLocalization = {
         sectionHeader: 'Generel Information',
         fullNameLabel: 'Fulde Navn:',
         dateOfBirthLabel: "Fødselsdag:",
-        phoneNumberLabel: "Telefon Nummber:",
-        fullAddressLabel: "Hjemme Addresse:"
+        phoneNumberLabel: "Telefon Nummer:",
+        fullAddressLabel: "Hjemme Adresse:"
     }
 }

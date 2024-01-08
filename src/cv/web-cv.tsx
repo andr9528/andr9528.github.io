@@ -1,20 +1,23 @@
-import { ThemeService } from "@/shared/services/theme-service";
-import { Divider, Grid, Paper, ThemeProvider } from "@mui/material";
-import { GeneralInformationSection } from "./components/general-information-section";
-import { EmploymentSection } from "./components/employment-section";
-import { ProfileSection } from "./components/profile-section";
-import { SkillsSection } from "./components/skills-section";
+import { Box, Divider, Grid, Paper } from "@mui/material";
 import { EducationSection } from "./components/education-section";
-import { ReferencesSection } from "./components/references-section";
-import { LinksSection } from "./components/links-section";
+import { EmploymentSection } from "./components/employment-section";
+import { GeneralInformationSection } from "./components/general-information-section";
 import { LanguagesSection } from "./components/languages-section";
+import { LinksSection } from "./components/links-section";
+import { ProfileSection } from "./components/profile-section";
+import { ReferencesSection } from "./components/references-section";
+import { SkillsSection } from "./components/skills-section";
+import { Header } from "@/header/header";
+import { OverflowStack } from "@/shared/components/overflow-stack";
+import { useRef } from "react";
+import { DocumentRef } from "react-pdf-printer";
 
-export function CV(): JSX.Element {
-    const themeService: ThemeService = ThemeService.instance    
-
+export function WebCv(): JSX.Element {
     return (
-        <ThemeProvider theme={themeService.getTheme()}>        
-            <Paper elevation={8} sx={{margin: '20px', padding: '20px', height: '100%', display: 'flex'}}>
+        <OverflowStack>
+            <Header/>        
+            <Box paddingX={'10%'} maxWidth={'100%'}>
+                <Paper elevation={8} sx={{margin: '20px', padding: '20px', height: '100%', display: 'flex'}}>
                     <Grid container width='100%'>
                         <Grid width={'69%'}>
                             <ProfileSection/>
@@ -32,7 +35,8 @@ export function CV(): JSX.Element {
                             <LanguagesSection/>
                         </Grid>                
                     </Grid>
-            </Paper>
-        </ThemeProvider>
-        )
+                </Paper>
+            </Box>
+        </OverflowStack>
+    )
 }
