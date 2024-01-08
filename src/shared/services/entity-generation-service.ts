@@ -96,22 +96,22 @@ export class EntityGenerationService {
             },
             {
                 name: 'Typescript',
-                level: SkillLevel.Skillfull,
+                level: SkillLevel.Skillful,
                 importance: 90
             },
             {
                 name: 'Scrum',
-                level: SkillLevel.Skillfull,
+                level: SkillLevel.Skillful,
                 importance: 80
             },
             {
                 name: 'Git',
-                level: SkillLevel.Skillfull,
+                level: SkillLevel.Skillful,
                 importance: 85
             },
             {
                 name: 'Entity Framework Core',
-                level: SkillLevel.Skillfull,
+                level: SkillLevel.Skillful,
                 importance: 84
             },
             {

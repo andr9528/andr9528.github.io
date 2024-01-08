@@ -3,13 +3,14 @@ import { Language, LocalizationService } from '../shared/services/localization-s
 import { CenteredBox } from '@/shared/components/centered-box';
 import { RightAlignedBox } from '@/shared/components/right-aligned-box';
 import { ThemeService } from '../shared/services/theme-service';
-import { PrintingService } from '@/shared/services/printing-service';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { Endpoint } from '@/shared/enum/endpoint';
 
 export function Header(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const themeService: ThemeService = ThemeService.instance
-    const printingService: PrintingService = PrintingService.instance
-
+    const navigate = useNavigate();
+    
     return (
         <ThemeProvider theme={themeService.getTheme()}>
             <Grid container width='100%'>
@@ -55,8 +56,8 @@ export function Header(): JSX.Element {
         localizationService.setLanguage(Language.ENGLISH)
     }
 
-    async function printCv(): Promise<void> {
+    async function printCv(): Promise<void> {        
         console.debug('Print clicked')
-        printingService.PrintPdf()
+        navigate(Endpoint.Print)
     }
 }

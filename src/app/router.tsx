@@ -1,22 +1,33 @@
 import { About } from "@/about/about";
-import { CV } from "@/cv/cv";
-import { NavigationService, PageType } from "@/shared/services/navigation-service";
-import { useEffect, useState } from "react";
+import { PrintCv } from "@/cv/print-cv";
+import { WebCv } from "@/cv/web-cv";
+import { Endpoint } from "@/shared/enum/endpoint";
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 
-export function Router(): JSX.Element {
-  const [currentPage, setCurrentPage] = useState(PageType.CV)
-
-  useEffect(() => {
-    NavigationService.instance.setupStateUpdater(setCurrentPage)
-  }, [])
-
-  return getCurrentPageComponent()
-
-  function getCurrentPageComponent(): JSX.Element {
-    switch (currentPage) {
-      case PageType.ABOUT: return (<About/>)
-      case PageType.CV: return (<CV />)
-    }
+const routes = createBrowserRouter([
+    {
+      path: Endpoint.Home,
+      element: <WebCv />,
+    },
+    {
+      path: Endpoint.Print,
+      element: <PrintCv />,
+    },
+    {
+      path: Endpoint.About,
+      element: <About />,
+    },
+    {
+      path: '*',
+      element: <Navigate to={Endpoint.Home} />,
+    },
+  ],
+  {
+    basename: Endpoint.Home
   }
+)
+
+export function Router(): JSX.Element { 
+  return <RouterProvider router={routes}/>
 }
 
