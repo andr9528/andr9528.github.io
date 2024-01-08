@@ -8,23 +8,22 @@ import { ProfileSection } from "./components/profile-section";
 import { ReferencesSection } from "./components/references-section";
 import { SkillsSection } from "./components/skills-section";
 import { useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+import { Box } from "@mui/material";
+import { OverflowStack } from "@/shared/components/overflow-stack";
 
 export function PrintCv(): JSX.Element {
-    const documentRef = useRef<DocumentRef>(null);
-    useEffect(() => {
-        documentRef.current?.render()
-        console.debug(documentRef)
-    }, [])    
+    const documentRef = useRef<DocumentRef>(null);   
 
     return (
         <Document
             ref={documentRef}
             header={<></>} 
             footer={<Pagination/>}
-            renderOnInit={true}
+            renderOnInit={false}
             screen={<></>}
         >
-            <Pages>
+            <OverflowStack>
                 <GeneralInformationSection/>
                 <ProfileSection/>
                 <EmploymentSection/>
@@ -33,7 +32,7 @@ export function PrintCv(): JSX.Element {
                 <LanguagesSection/>
                 <ReferencesSection/>
                 <LinksSection/>
-            </Pages>
+            </OverflowStack>
         </Document>
     )
 }

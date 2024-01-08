@@ -3,7 +3,7 @@ import { Language, LocalizationService } from '../shared/services/localization-s
 import { CenteredBox } from '@/shared/components/centered-box';
 import { RightAlignedBox } from '@/shared/components/right-aligned-box';
 import { ThemeService } from '../shared/services/theme-service';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Endpoint } from '@/shared/enum/endpoint';
 
 export function Header(): JSX.Element {

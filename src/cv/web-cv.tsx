@@ -8,10 +8,13 @@ import { ProfileSection } from "./components/profile-section";
 import { ReferencesSection } from "./components/references-section";
 import { SkillsSection } from "./components/skills-section";
 import { Header } from "@/header/header";
+import { OverflowStack } from "@/shared/components/overflow-stack";
+import { useRef } from "react";
+import { DocumentRef } from "react-pdf-printer";
 
 export function WebCv(): JSX.Element {
     return (
-        <>
+        <OverflowStack>
             <Header/>        
             <Box paddingX={'10%'} maxWidth={'100%'}>
                 <Paper elevation={8} sx={{margin: '20px', padding: '20px', height: '100%', display: 'flex'}}>
@@ -34,8 +37,6 @@ export function WebCv(): JSX.Element {
                     </Grid>
                 </Paper>
             </Box>
-        </>
-
-
+        </OverflowStack>
     )
 }

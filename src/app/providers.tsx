@@ -11,7 +11,7 @@ export function Providers(props: ProvidersProps): JSX.Element {
     
     return (
     <ThemeProvider theme={themeService.getTheme()}>
-        <PrinterProvider configuration={{ useAsync: true}}>                
+        <PrinterProvider configuration={{ useAsync: false}}>                
             {props.children}
         </PrinterProvider>
     </ThemeProvider>

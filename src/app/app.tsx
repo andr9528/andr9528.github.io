@@ -13,9 +13,7 @@ export default function App(): JSX.Element {
 
   return (
     <Providers>
-      <Stack height={'100%'} overflow={"hidden"} margin={0}>
-          <Router/>     
-      </Stack>
+      <Router/>     
     </Providers>
   )
 }
