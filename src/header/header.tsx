@@ -1,16 +1,16 @@
-
 import { Button, ButtonGroup, Divider, Grid, Paper, Theme, ThemeProvider, Typography } from '@mui/material';
-import { Language, LocalizationService } from '../../shared/services/localization-service';
+import { Language, LocalizationService } from '../shared/services/localization-service';
 import { CenteredBox } from '@/shared/components/centered-box';
 import { RightAlignedBox } from '@/shared/components/right-aligned-box';
-import { ThemeService } from '../../shared/services/theme-service';
-import { PrintingService } from '@/shared/services/printing-service';
+import { ThemeService } from '../shared/services/theme-service';
+import { useNavigate } from 'react-router-dom';
+import { Endpoint } from '@/shared/enum/endpoint';
 
 export function Header(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const themeService: ThemeService = ThemeService.instance
-    const printingService: PrintingService = PrintingService.instance
-
+    const navigate = useNavigate();
+    
     return (
         <ThemeProvider theme={themeService.getTheme()}>
             <Grid container width='100%'>
@@ -47,14 +47,17 @@ export function Header(): JSX.Element {
     )
 
     function setLanguageToDanish(): void {
+        console.debug('Setting language to Danish')
         localizationService.setLanguage(Language.DANISH)
     }
 
     function setLanguageToEnglish(): void {
+        console.debug('Setting language to English')
         localizationService.setLanguage(Language.ENGLISH)
     }
 
-    async function printCv(): Promise<void> {
-        printingService.PrintPdf()
+    async function printCv(): Promise<void> {        
+        console.debug('Print clicked')
+        navigate(Endpoint.Print)
     }
 }

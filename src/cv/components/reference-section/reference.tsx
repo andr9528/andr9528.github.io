@@ -1,4 +1,3 @@
-
 import { ReferenceEntity } from "@/shared/entities/reference-entity";
 import { LocalizationService } from "@/shared/services/localization-service";
 import { Paper, Typography } from "@mui/material";

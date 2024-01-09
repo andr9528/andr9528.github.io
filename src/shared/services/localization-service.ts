@@ -35,7 +35,7 @@ export class LocalizationService extends BaseService<Language> {
 
     private constructor() {
         super()
-        this.currentLanguage = Language.ENGLISH
+        this.currentLanguage = Language.DANISH
         this.localizations = {
             da: danishLocalization,
             en: englishLocalization
@@ -56,7 +56,7 @@ export class LocalizationService extends BaseService<Language> {
     }
 
     public setupStateUpdater(stateUpdater: Dispatch<SetStateAction<Language>>) {
-        this.stateUpdater = stateUpdater        
+        this.stateUpdater = stateUpdater
         console.info(`Finished setup of ${LocalizationService.name}.`)
     }
 

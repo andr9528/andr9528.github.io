@@ -15,7 +15,7 @@ export function LinkHousing(props: LinkHousingProps): JSX.Element {
             <Typography color={'Highlight'}>
                 {entityLocalizationService.getEntityText(props.linkEntity.titleKey)}
             </Typography>
-            <Link>
+            <Link href={props.linkEntity.address}>
                 {props.linkEntity.address}
             </Link>
             <Typography>

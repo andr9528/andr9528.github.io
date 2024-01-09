@@ -106,3 +106,15 @@ a {
     color-scheme: dark;
   }
 }
+
+@media print
+{    
+    html {
+        overflow: visible !important;
+    }
+}
+
+@media print
+{    
+  .pagebreak { page-break-before: always; }
+}

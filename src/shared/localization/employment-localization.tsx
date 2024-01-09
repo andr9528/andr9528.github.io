@@ -1,5 +1,6 @@
-import { Link, List, ListItem } from "@mui/material"
+import { Box, Link, List, ListItem } from "@mui/material"
 import { ReactNode } from "react"
+import { PageBreak } from "../components/page-break"
 
 export interface EntityEmploymentLocalization {
     jobTitleApps4All: ReactNode
@@ -21,7 +22,7 @@ export interface ComponentEmploymentLocalization {
     joiningWord2: ReactNode
     currentEmployment: ReactNode
     expectedEnd: ReactNode
-    exptectedStart: ReactNode
+    expectedStart: ReactNode
     workDescriptionLabel: ReactNode
 }
 
@@ -42,8 +43,8 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
         jobTitleOwn: 'Software Developer',
         workDescriptionApps4All: 
         `My primary task was to develop new mobile applications suitable to Android, for using in Point-of-Sale units. 
-        Development of the mobile applications i did throught the use of Xamarin Forms.
-        In addition to this, i also develop some microserivces to support the mobile applications.
+        Development of the mobile applications i did through the use of Xamarin Forms.
+        In addition to this, i also develop some Microservices to support the mobile applications.
         The microservices was deployed to Google Cloud.        
         `,
         workDescriptionTv2: createTv2WorkDescription(
@@ -52,11 +53,11 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
 
         On the Cliptool project, i rewrote the frontend side of the application, mainly to limit the amount of components per file to one.
         The rewrite was also done to apply a better file structure to the project, as it was difficult to know where different components were located beforehand.
-        I also rewrote parts of the backend of Cliptool in the proccess, mainly to save changes to settings for between sessions better than before.
+        I also rewrote parts of the backend of Cliptool in the process, mainly to save changes to settings for between sessions better than before.
         During this rewrite, i managed to fix a number of smaller bugs, and introduce the ability to hide selected files from the GUI.
         
         On the Sofie project, i helped with creating parts of the backend, related to interacting with the underlying mongo database and the frontend facing presentation layer.
-        I also helped with moving over parts of the company specifc code from the old repository, to the new structure.
+        I also helped with moving over parts of the company specific code from the old repository, to the new structure.
         
         All in all, i went from newer having touched or used Typescript, to now feeling just as comfortable in that as i am in C#.`
         ),
@@ -64,7 +65,7 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
             {
                 baseText: 
                 `Part time work on a number of my own projects, that has been sidelined during my time at Tv2.
-                These can be shelved with moments notice, should a new job opportunity arize.
+                These can be shelved with moments notice, should a new job opportunity arise.
                 As they are my own projects, I do not earn anything working on this, other than what support i get from the state.
                 The order of the below listed projects, are the order that i focus on them.
                 `,
@@ -76,14 +77,14 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
                 gameDev: 
                 `I have a game in mind that i would like to slowly get started on.
                 Currently i have noted down many details of the planned game, but have not started on any code for it yet.
-                I am heavily leaning toward using Godot as the game engine of choice, mainly for the C# language, but also due to the controversy about Unity durint 2023.
+                I am heavily leaning toward using Godot as the game engine of choice, mainly for the C# language, but also due to the controversy about Unity during 2023.
                 The game genre will be Tower Defence / Rougelike, with inspiration from a number of Mythologies, as a nod to my liking of 'Age of Mythology'. 
                 `,                
                 moddingDev: 
                 `I have some ideas for mods for one of my favorit games as of late, Oxygen Not Included, which i might spend some time on bringing to life.
                 Some of the ideas i have shared with other modders for the game, and i will thus likely spar with them if needed.
                 The game is developer using Unity, therefore C# is the language to be used, which is an advantage for me.
-                It uses uses 'Harmony' as the accesspoint for modders, which might help me learn it for use my own game, if Godot allows it.
+                It uses uses 'Harmony' as the access point for modders, which might help me learn it for use my own game, if Godot allows it.
                 `
             }
         )
@@ -96,7 +97,7 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
         joiningWord2: 'by',
         currentEmployment: 'Current employment',
         expectedEnd: 'Expected end of employment: ',
-        exptectedStart: 'Exptected start of employment: ',
+        expectedStart: 'Expected start of employment: ',
         workDescriptionLabel: 'Description of Performed Work:'
     }
 }
@@ -124,12 +125,12 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
          Nogle af de Open Source projekter som jeg har bidraget til er listed længere nede.
          
          På Cliptool projected, genskrev jeg frontend siden af programmet, hovedsagelidt for at begrænse antallet af komponenter per fil til en.
-         Omskrivningen betød også at en bedre fil struktur blev påført projektet, da det før var besværligt at finde komponeneter man havde brug for at rette i.
+         Omskrivningen betød også at en bedre fil struktur blev påført projektet, da det før var besværligt at finde komponenter man havde brug for at rette i.
          Under omskrivning blev backenden også rettet, hovedsageligt for at bedre gemme ændringer til indstillinger mellem sessioner, end det blev gjort før.
-         I forbindelse med omskrivningen fik jeg også rettet en række fejl, og introduseret muligheden for at skjule valgte filer fra brugergrænsefladen.
+         I forbindelse med omskrivningen fik jeg også rettet en række fejl, og introduceret muligheden for at skjule valgte filer fra brugergrænsefladen.
          
          På Sofie Projektet, hjælp jeg med at skabe dele af backenden relateret til interaktionen med den underligende mongo database, samt den frontend rettet presentations lag.
-         Jeg hjælp også med at flýtte dele af den virksomheds specifikky kode fra det gamle repository over i den nye struktur.
+         Jeg hjælp også med at flytte dele af den virksomheds specifikke kode fra det gamle repository over i den nye struktur.
          
          Alt i alt, så er jeg gået fra ikke at have rørt eller anvendt Typescript, til nu at føle mig lige så komfortable i det som i C#.`
         ),
@@ -144,13 +145,13 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
                 tracker: 
                 `Et højt modulært program til at holde styr på en række forskellige ting, defineret af de moduler der bliver lavet.
                 Programmet vil blive lavet med C#, Entity Framework Core og Maui som frontend.
-                Planlagte moduler inkludere madplænlægning, budget og tidsforbrug.
+                Planlagte moduler inkludere madplanlægning, budget og tidsforbrug.
                 `, 
                 gameDev: 
-                `Jeg har et spil i tankerne som jeg gerne vil lagtsom begynde på.
+                `Jeg har et spil i tankerne som jeg gerne vil langsomt begynde på.
                 Har på nuværdene tidspunkt en længere række noter omkring spillet, men ikke noget aktuel kode til det.
-                Jeg har et ønske om at bruge Godot som den valgte game engine, hovedsagelidt på grund af dens brug af C#, samt den kontrovers angående Unity som skette i løbet af 2023.
-                Spillet vil være under genren Tower Defence / Rougelike, med inspiration fra en række mythologier, da jeg elsker spillet 'Age of Mythology'.
+                Jeg har et ønske om at bruge Godot som den valgte game engine, hovedsagelidt på grund af dens brug af C#, samt den kontrovers angående Unity som skete i løbet af 2023.
+                Spillet vil være under genren Tower Defence / Rougelike, med inspiration fra en række mytologier, da jeg elsker spillet 'Age of Mythology'.
                 `,
                 moddingDev: 
                 `Jeg har nogle ideer til nogle mods til mit nuværdene favorit spil, Oxygen Not Included, som jeg gerne vil bruge lidt tid på at bringe til live, hvis muligt.
@@ -167,8 +168,8 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
         joiningWord1: 'ved',
         joiningWord2: 'for',
         currentEmployment: 'Nuværdene Arbejde',
-        expectedEnd: 'Forvented slutning på ansættelse: ',
-        exptectedStart: 'Forventet start på ansættelse: ',
+        expectedEnd: 'Forventet slutning på ansættelse: ',
+        expectedStart: 'Forventet start på ansættelse: ',
         workDescriptionLabel: 'Beskrivelse af Arbejdsopgaver:'
     }
 }
@@ -206,6 +207,7 @@ function createOwnWorkDescription(parts: {baseText: string, tracker: string, gam
         <ListItem sx={{ display: 'list-item' }}>
             {parts.gameDev}
         </ListItem>
+        <PageBreak/>
         <ListItem sx={{ display: 'list-item' }}>
             {parts.moddingDev}
         </ListItem>
