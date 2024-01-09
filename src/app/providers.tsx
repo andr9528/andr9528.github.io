@@ -15,6 +15,5 @@ export function Providers(props: ProvidersProps): JSX.Element {
             {props.children}
         </PrinterProvider>
     </ThemeProvider>
-
     )
 }

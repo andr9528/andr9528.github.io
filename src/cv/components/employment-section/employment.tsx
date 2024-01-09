@@ -48,10 +48,10 @@ export function Employment(props: EmploymentProps): JSX.Element {
         }
 
         if (props.employmentEntity.endDate && isDateInFuture(props.employmentEntity.endDate)) {
-            const currentEmpolyment: ReactNode = entityLocalizationService.getComponentText('currentEmployment')
+            const currentEmployment: ReactNode = entityLocalizationService.getComponentText('currentEmployment')
             const expectedEnd: ReactNode = entityLocalizationService.getComponentText('expectedEnd')
             const endDate: string = getLocalizedDate(props.employmentEntity.endDate)
-            const end: string = `${currentEmpolyment}, ${expectedEnd} ${endDate}`
+            const end: string = `${currentEmployment}, ${expectedEnd} ${endDate}`
             return `${start} - ${end}`
         }
 
