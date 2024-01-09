@@ -1,5 +1,6 @@
-import { Link, List, ListItem } from "@mui/material"
+import { Box, Link, List, ListItem } from "@mui/material"
 import { ReactNode } from "react"
+import { PageBreak } from "../components/page-break"
 
 export interface EntityEmploymentLocalization {
     jobTitleApps4All: ReactNode
@@ -206,6 +207,7 @@ function createOwnWorkDescription(parts: {baseText: string, tracker: string, gam
         <ListItem sx={{ display: 'list-item' }}>
             {parts.gameDev}
         </ListItem>
+        <PageBreak/>
         <ListItem sx={{ display: 'list-item' }}>
             {parts.moddingDev}
         </ListItem>

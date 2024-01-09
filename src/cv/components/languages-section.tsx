@@ -4,6 +4,7 @@ import { LocalizationService } from "@/shared/services/localization-service";
 import { Box, Paper, Typography } from "@mui/material";
 import { Language } from "./language-section/language";
 import { Page, Pages, usePrinter } from "react-pdf-printer";
+import { PageBreak } from "@/shared/components/page-break";
 
 export function LanguagesSection(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
@@ -12,9 +13,13 @@ export function LanguagesSection(): JSX.Element {
     const { isPrinter } = usePrinter()
 
     return (
+    <>
+        <PageBreak/>
         <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
             {isPrinter ? getPrinterLayout() : getWebLayout()}
-        </Paper>
+        </Paper>    
+    </>
+        
     )
 
     function getPrinterLayout(): JSX.Element {
