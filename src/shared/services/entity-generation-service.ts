@@ -134,6 +134,12 @@ export class EntityGenerationService {
                 level: SkillLevel.Beginner,
                 importance: 30
             },
+            {
+                name: 'Angular',
+                level: SkillLevel.Novice,
+                importance: 24
+            },
+            
         ]
 
         return entities.sort((a,b) => this.sortSkill(a, b)).reverse()

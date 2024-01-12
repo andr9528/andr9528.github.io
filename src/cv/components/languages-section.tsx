@@ -14,7 +14,6 @@ export function LanguagesSection(): JSX.Element {
 
     return (
     <>
-        <PageBreak/>
         <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
             {isPrinter ? getPrinterLayout() : getWebLayout()}
         </Paper>    
