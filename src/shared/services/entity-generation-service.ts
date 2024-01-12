@@ -115,6 +115,11 @@ export class EntityGenerationService {
                 importance: 84
             },
             {
+                name: 'C++',
+                level: SkillLevel.Novice,
+                importance: 25
+            },
+            {
                 name: 'Java',
                 level: SkillLevel.Novice,
                 importance: 20
@@ -210,6 +215,11 @@ export class EntityGenerationService {
                 nameKey: this.getEntityLanguageLocalizationKey("englishLanguage"),
                 level: LanguageLevel.HIGHLY_PROFICIENT,
                 importance: 16
+            },
+            {
+                nameKey: this.getEntityLanguageLocalizationKey("germanLanguage"),
+                level: LanguageLevel.WORKING_KNOWLEDGE,
+                importance: 4
             }
         ]
         

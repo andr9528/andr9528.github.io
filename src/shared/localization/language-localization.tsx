@@ -3,6 +3,7 @@ import { ReactNode } from "react"
 export interface EntityLanguageLocalization {
     danishLanguage: ReactNode,
     englishLanguage: ReactNode
+    germanLanguage: ReactNode
 }
 
 export type EntityLanguageLocalizationKeys = keyof EntityLanguageLocalization
@@ -21,7 +22,8 @@ export interface LanguageLocalization {
 const defaultLanguageLocalization: LanguageLocalization = {
     entityLocalization: {
         danishLanguage: 'Danish',
-        englishLanguage: 'English'
+        englishLanguage: 'English',
+        germanLanguage: 'German'
     },
     componentLocalization: {
         sectionHeader: 'Languages'
@@ -37,7 +39,8 @@ export const danishLanguageLocalization: LanguageLocalization = {
     entityLocalization: {
         ...defaultLanguageLocalization.entityLocalization,
         danishLanguage: 'Dansk',
-        englishLanguage: 'Engelsk'
+        englishLanguage: 'Engelsk',
+        germanLanguage: 'Tysk'
     },
     componentLocalization: {
         ...defaultLanguageLocalization.componentLocalization,
