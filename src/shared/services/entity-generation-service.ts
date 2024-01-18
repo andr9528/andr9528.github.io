@@ -139,6 +139,11 @@ export class EntityGenerationService {
                 level: SkillLevel.Novice,
                 importance: 24
             },
+            {
+                name: 'Xamarin Forms',
+                level: SkillLevel.Beginner,
+                importance: 40
+            },
             
         ]
 
