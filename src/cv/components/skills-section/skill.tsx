@@ -1,16 +1,19 @@
 import { PageBreak } from "@/shared/components/page-break";
-import { SkillEntity } from "@/shared/entities/skill-entity";
+import { SkillEntity, SkillName } from "@/shared/entities/skill-entity";
 import { Paper, Rating, Typography } from "@mui/material";
 import { ReactNode } from "react";
+import { Language, LocalizationService } from "@/shared/services/localization-service";
 
 interface SkillProps {
     skillEntity: SkillEntity
 }
 
 export function Skill(props: SkillProps): JSX.Element {
+    const localizationService = LocalizationService.instance 
+    
     return (
         <>
-            {insertNewPageInPrint('Java')}
+            {insertNewPageInPrint(SkillName.JAVA, Language.DANISH)}
             <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
                 <Typography>{props.skillEntity.name}</Typography>
                 <Rating value={props.skillEntity.level} readOnly/>
@@ -19,11 +22,11 @@ export function Skill(props: SkillProps): JSX.Element {
         
     )
 
-    function insertNewPageInPrint(skillName: string): ReactNode {
-        if (props.skillEntity.name !== skillName) {
-            return (<></>)
-        } else {        
+    function insertNewPageInPrint(skillName: SkillName, language: Language): ReactNode {
+        if (props.skillEntity.name === skillName && localizationService.getCurrentLanguage() === language) {
             return (<PageBreak/>)
-        }
+        }  
+
+        return (<></>)        
     }
 }

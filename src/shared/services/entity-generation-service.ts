@@ -3,7 +3,7 @@ import { GeneralInformationEntity } from "../entities/general-information-entity
 import { ComponentEmploymentLocalizationKeys, EntityEmploymentLocalizationKeys } from "../localization/employment-localization"
 import { LocalizationService } from "./localization-service"
 import { EntityGeneralInformationLocalizationKeys } from '../localization/general-information-localization';
-import { SkillEntity, SkillLevel } from "../entities/skill-entity";
+import { SkillEntity, SkillLevel, SkillName } from "../entities/skill-entity";
 import { LinkEntity } from "../entities/link-entity";
 import { EntityLinksLocalizationKeys } from "../localization/links-localization";
 import { ReferenceEntity } from "../entities/reference-entity";
@@ -90,57 +90,57 @@ export class EntityGenerationService {
     public getSkillsEntities(): SkillEntity[] {
         const entities: SkillEntity[] = [
             {
-                name: 'C#',
+                name: SkillName.C_SHARP,
                 level: SkillLevel.Experienced,
                 importance: 100
             },
             {
-                name: 'Typescript',
+                name: SkillName.TYPESCRIPT,
                 level: SkillLevel.Skillful,
                 importance: 90
             },
             {
-                name: 'Scrum',
+                name: SkillName.SCRUM,
                 level: SkillLevel.Skillful,
                 importance: 80
             },
             {
-                name: 'Git',
+                name: SkillName.GIT,
                 level: SkillLevel.Skillful,
                 importance: 85
             },
             {
-                name: 'Entity Framework Core',
+                name: SkillName.ENTITY_FRAMEWORK_CORE,
                 level: SkillLevel.Skillful,
                 importance: 84
             },
             {
-                name: 'C++',
+                name: SkillName.C_PLUS_PLUS,
                 level: SkillLevel.Novice,
                 importance: 25
             },
             {
-                name: 'Java',
+                name: SkillName.JAVA,
                 level: SkillLevel.Novice,
                 importance: 20
             },
             {
-                name: 'Python',
+                name: SkillName.PYTHON,
                 level: SkillLevel.Novice,
                 importance: 19
             },
             {
-                name: 'SQL',
+                name: SkillName.SQL,
                 level: SkillLevel.Beginner,
                 importance: 30
             },
             {
-                name: 'Angular',
+                name: SkillName.ANGULAR,
                 level: SkillLevel.Novice,
                 importance: 24
             },
             {
-                name: 'Xamarin Forms',
+                name: SkillName.XAMARIN_FORMS,
                 level: SkillLevel.Beginner,
                 importance: 40
             },

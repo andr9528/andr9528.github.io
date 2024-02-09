@@ -1,6 +1,8 @@
 import { LabelledTypography } from "@/shared/components/labelled-typography";
+import { PageBreak } from "@/shared/components/page-break";
 import { EmploymentEntity } from "@/shared/entities/employment-entity";
-import { LocalizationService } from "@/shared/services/localization-service";
+import { EntityEmploymentLocalizationKeys } from "@/shared/localization/employment-localization";
+import { Language, LocalizationService } from "@/shared/services/localization-service";
 import { Paper, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
@@ -15,19 +17,22 @@ export function Employment(props: EmploymentProps): JSX.Element {
     const employmentPeriode: string = buildEmploymentPeriodeString()
     
     return (
-        <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
-            <Typography color={'Highlight'}>
-                {employedAsAt}
-            </Typography>
-            <Typography>
-                {employmentPeriode}
-            </Typography>
-            <LabelledTypography 
-                labelText={entityLocalizationService.getComponentText("workDescriptionLabel")}
-                labelProps={{color: 'GrayText'}}
-                mainText={entityLocalizationService.getEntityText(props.employmentEntity.workDescriptionKey)}
-                mainProps={{variant: 'body1', style: {whiteSpace: 'pre-line'}}}/>
-        </Paper>
+        <>
+            {insertNewPageInPrint("employerApps4All", Language.ENGLISH)}
+            <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
+                <Typography color={'Highlight'}>
+                    {employedAsAt}
+                </Typography>
+                <Typography>
+                    {employmentPeriode}
+                </Typography>
+                <LabelledTypography 
+                    labelText={entityLocalizationService.getComponentText("workDescriptionLabel")}
+                    labelProps={{color: 'GrayText'}}
+                    mainText={entityLocalizationService.getEntityText(props.employmentEntity.workDescriptionKey)}
+                    mainProps={{variant: 'body1', style: {whiteSpace: 'pre-line'}}}/>
+            </Paper>
+        </>
     )
 
     function buildEmployedAsAtString(): string {
@@ -68,5 +73,13 @@ export function Employment(props: EmploymentProps): JSX.Element {
 
     function getLocalizedDate(date: Date): string {
         return date.toLocaleDateString(localizationService.getCurrentLanguage(), {dateStyle: "medium"})
+    }
+
+    function insertNewPageInPrint(employerKey: EntityEmploymentLocalizationKeys, language: Language): ReactNode {
+        if (props.employmentEntity.employerKey === employerKey && localizationService.getCurrentLanguage() === language) {
+            return (<PageBreak/>)
+        }  
+
+        return (<></>)        
     }
 }
