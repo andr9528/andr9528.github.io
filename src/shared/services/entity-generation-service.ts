@@ -13,6 +13,8 @@ import { EntityLanguageLocalizationKeys } from "../localization/language-localiz
 import { Importance, Periode } from "../entities/common";
 import { EducationEntity } from "../entities/education-entity";
 import { EntityEducationLocalizationKeys } from "../localization/education-localization";
+import { ProjectEntity } from '../entities/project-entity';
+import { EntityProjectLocalizationKeys } from "../localization/project-localization";
 
 export class EntityGenerationService {
     public static instance: EntityGenerationService = new EntityGenerationService()
@@ -61,15 +63,6 @@ export class EntityGenerationService {
                 workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionTv2"),
                 joiningWordKey: this.getComponentEmploymentLocalizationKey("joiningWord1")
             },
-            {
-                jobTitleKey: this.getEntityEmploymentLocalizationKey("jobTitleOwn"),                 
-                startDate: new Date(2024, 0, 1),
-                employerKey: this.getEntityEmploymentLocalizationKey("employerOwn"),
-                city: 'Odense',
-                workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionOwn"),
-                joiningWordKey: this.getComponentEmploymentLocalizationKey("joiningWord2")
-            }
-
         ]
 
         return entities.sort((a, b) => this.sortPeriode(a, b)).reverse()
@@ -282,6 +275,32 @@ export class EntityGenerationService {
     }
 
     private getEntityEducationLocalizationKey(key: EntityEducationLocalizationKeys): EntityEducationLocalizationKeys {
+        return key
+    }
+
+    public getProjectEntities(): ProjectEntity[] {
+        const entities: ProjectEntity[] = [
+            {
+                titleKey: this.getEntityProjectLocationKey("trackerTitle"),
+                descriptionKey: this.getEntityProjectLocationKey("trackerDescription"),
+                importance: 100
+            },
+            {
+                titleKey: this.getEntityProjectLocationKey("towerDefenceDevTitle"),
+                descriptionKey: this.getEntityProjectLocationKey("towerDefenceDevDescription"),
+                importance: 90
+            },
+            {
+                titleKey: this.getEntityProjectLocationKey("oniModdingTitle"),
+                descriptionKey: this.getEntityProjectLocationKey("oniModdingDescription"),
+                importance: 80
+            },
+        ]
+
+        return entities.sort((a, b) => this.sortImportance(a, b)).reverse()
+    }
+
+    private getEntityProjectLocationKey(key: EntityProjectLocalizationKeys): EntityProjectLocalizationKeys {
         return key
     }
 }

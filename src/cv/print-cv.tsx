@@ -9,6 +9,7 @@ import { ReferencesSection } from "./components/references-section";
 import { SkillsSection } from "./components/skills-section";
 import { useRef } from "react";
 import { OverflowStack } from "@/shared/components/overflow-stack";
+import { ProjectSection } from "./components/project-section";
 
 export function PrintCv(): JSX.Element {
     const documentRef = useRef<DocumentRef>(null);   
@@ -27,6 +28,7 @@ export function PrintCv(): JSX.Element {
                     <ProfileSection/>
                 </Page>                
                 <EmploymentSection/>
+                <ProjectSection/>
                 <EducationSection/>
                 <SkillsSection/>
                 <Page>

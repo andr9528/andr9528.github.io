@@ -1,11 +1,13 @@
 import { LabelledTypography } from "@/shared/components/labelled-typography";
+import { PageBreak } from "@/shared/components/page-break";
 import { EducationEntity } from "@/shared/entities/education-entity";
-import { LocalizationService } from "@/shared/services/localization-service";
+import { ApplicationLanguage, LocalizationService } from "@/shared/services/localization-service";
 import { Paper, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
 interface EducationProps {
     educationEntity: EducationEntity
+    index: number
 }
 
 export function Education(props: EducationProps): JSX.Element {
@@ -15,19 +17,23 @@ export function Education(props: EducationProps): JSX.Element {
     const educationPeriode: string = buildEducationPeriodeString()    
 
     return (
-        <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
-            <Typography color={'Highlight'}>
-                {educationAsAt}
-            </Typography>
-            <Typography>
-                {educationPeriode}
-            </Typography>
-            <LabelledTypography 
-                labelText={entityLocalizationService.getComponentText("educationDescriptionLabel")}
-                labelProps={{color: 'GrayText'}}
-                mainText={entityLocalizationService.getEntityText(props.educationEntity.descriptionKey)}
-                mainProps={{variant: 'body1', style: {whiteSpace: 'pre-line'}}}/>     
-        </Paper>
+        <>
+            {insertNewPageInPrint(1, ApplicationLanguage.DANISH)}
+            {insertNewPageInPrint(1, ApplicationLanguage.ENGLISH)}
+            <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
+                <Typography color={'Highlight'}>
+                    {educationAsAt}
+                </Typography>
+                <Typography>
+                    {educationPeriode}
+                </Typography>
+                <LabelledTypography 
+                    labelText={entityLocalizationService.getComponentText("educationDescriptionLabel")}
+                    labelProps={{color: 'GrayText'}}
+                    mainText={entityLocalizationService.getEntityText(props.educationEntity.descriptionKey)}
+                    mainProps={{variant: 'body1', style: {whiteSpace: 'pre-line'}}}/>     
+            </Paper>
+        </>
     )
 
     function buildEducationAsAtString(): string {
@@ -63,5 +69,13 @@ export function Education(props: EducationProps): JSX.Element {
 
     function getLocalizedDate(date: Date): string {
         return date.toLocaleDateString(localizationService.getCurrentLanguage(), {dateStyle: "medium"})
+    }
+
+    function insertNewPageInPrint(index: number, language: ApplicationLanguage): ReactNode {
+        if (props.index === index && localizationService.getCurrentLanguage() === language) {
+            return (<PageBreak/>)
+        }  
+
+        return (<></>)        
     }
 }

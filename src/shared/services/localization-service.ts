@@ -21,21 +21,23 @@ import { LanguageLocalizationService } from "./entity-localization/language-loca
 import { ComponentLanguageLocalizationKeys, EntityLanguageLocalizationKeys } from "../localization/language-localization"
 import { ComponentEducationLocalizationKeys, EntityEducationLocalizationKeys } from "../localization/education-localization"
 import { EducationLocalizationService } from "./entity-localization/education-localization-service"
+import { ComponentProjectLocalizationKeys, EntityProjectLocalizationKeys } from "../localization/project-localization"
+import { ProjectLocalizationService } from "./entity-localization/project-localization-service"
 
-export enum Language {
+export enum ApplicationLanguage {
     ENGLISH = 'en',
     DANISH = 'da',
 }
 
-export class LocalizationService extends BaseService<Language> {
+export class LocalizationService extends BaseService<ApplicationLanguage> {
     public static instance: LocalizationService = new LocalizationService()
-    private currentLanguage: Language
-    private readonly localizations: Record<Language, Localization>
+    private currentLanguage: ApplicationLanguage
+    private readonly localizations: Record<ApplicationLanguage, Localization>
     private readonly entittyLocalizationServices: Record<LocalizationKeys, EntityLocalizationService<unknown, unknown> | undefined>
 
     private constructor() {
         super()
-        this.currentLanguage = Language.DANISH
+        this.currentLanguage = ApplicationLanguage.DANISH
         this.localizations = {
             da: danishLocalization,
             en: englishLocalization
@@ -49,18 +51,19 @@ export class LocalizationService extends BaseService<Language> {
             links: new LinksLocalizationService(this.getCurrentLocalization.bind(this)),
             references: new ReferencesLocalizationService(this.getCurrentLocalization.bind(this)),
             language: new LanguageLocalizationService(this.getCurrentLocalization.bind(this)),
+            project: new ProjectLocalizationService(this.getCurrentLocalization.bind(this)),
             header: undefined,
         }    
 
         console.info(`Finished constructing ${LocalizationService.name}.`)
     }
 
-    public setupStateUpdater(stateUpdater: Dispatch<SetStateAction<Language>>) {
+    public setupStateUpdater(stateUpdater: Dispatch<SetStateAction<ApplicationLanguage>>) {
         this.stateUpdater = stateUpdater
         console.info(`Finished setup of ${LocalizationService.name}.`)
     }
 
-    public setLanguage(language: Language): void {
+    public setLanguage(language: ApplicationLanguage): void {
         this.assertStateUpdaterNotUndefined(this.setLanguage.name)
         this.currentLanguage = language
         this.stateUpdater!(language)
@@ -199,12 +202,28 @@ export class LocalizationService extends BaseService<Language> {
         return service
     }
 
+    public getProjectLocalizationService(): EntityLocalizationService<
+    ComponentProjectLocalizationKeys, 
+    EntityProjectLocalizationKeys
+    > {
+        const service: EntityLocalizationService<
+        ComponentProjectLocalizationKeys, 
+        EntityProjectLocalizationKeys
+        > | undefined = this.entittyLocalizationServices['project']
+
+        if (!service) {
+            throw new UnexpectedUndefinedException('Expected an Localization service for Project to exist.')
+        }
+
+        return service
+    }
+
 
     private getCurrentLocalization(): Localization {
         return this.localizations[this.currentLanguage]
     }
 
-    public getCurrentLanguage(): Language {
+    public getCurrentLanguage(): ApplicationLanguage {
         return this.currentLanguage
     }
 }

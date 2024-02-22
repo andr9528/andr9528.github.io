@@ -10,5 +10,4 @@ export class EducationLocalizationService extends BaseEntityLocalizationSerive i
     public getComponentText(key: ComponentEducationLocalizationKeys): ReactNode {
         return this.getCurrentLocalization().education.componentLocalization[key]
     }
-
 }

@@ -5,6 +5,7 @@ import { HeaderLocalization, danishHeaderLocalization, englishHeaderLocalization
 import { LanguageLocalization, danishLanguageLocalization, englishLanguageLocalization } from "./language-localization";
 import { LinksLocalization, danishLinksLocalization, englishLinksLocalization } from "./links-localization";
 import { ProfileLocalization, danishProfileLocalization, englishProfileLocalization } from "./profile-localization";
+import { ProjectLocalization, danishProjectLocalization, englishProjectLocalization } from './project-localization';
 import { ReferencesLocalization, danishReferencesLocalization, englishReferencesLocalization } from "./references-localization";
 import { SkillsLocalization, danishSkillsLocalization, englishSkillsLocalization } from "./skills-localization";
 
@@ -18,6 +19,7 @@ export interface Localization {
     links: LinksLocalization
     references: ReferencesLocalization
     language: LanguageLocalization
+    project: ProjectLocalization
 }
 
 export type LocalizationKeys = keyof Localization
@@ -31,7 +33,8 @@ export const danishLocalization: Localization = {
     profile: danishProfileLocalization,
     links: danishLinksLocalization,
     references: danishReferencesLocalization,
-    language: danishLanguageLocalization
+    language: danishLanguageLocalization,
+    project: danishProjectLocalization
 }
 
 export const englishLocalization: Localization = {
@@ -43,5 +46,6 @@ export const englishLocalization: Localization = {
     profile: englishProfileLocalization,
     links: englishLinksLocalization,
     references: englishReferencesLocalization,
-    language: englishLanguageLocalization
+    language: englishLanguageLocalization,
+    project: englishProjectLocalization
 }

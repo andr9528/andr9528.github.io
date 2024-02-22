@@ -11,6 +11,7 @@ import { Header } from "@/header/header";
 import { OverflowStack } from "@/shared/components/overflow-stack";
 import { useRef } from "react";
 import { DocumentRef } from "react-pdf-printer";
+import { ProjectSection } from "./components/project-section";
 
 export function WebCv(): JSX.Element {
     return (
@@ -22,6 +23,7 @@ export function WebCv(): JSX.Element {
                         <Grid width={'69%'}>
                             <ProfileSection/>
                             <EmploymentSection/>
+                            <ProjectSection/>
                             <EducationSection/>
                             <ReferencesSection/>
                         </Grid>

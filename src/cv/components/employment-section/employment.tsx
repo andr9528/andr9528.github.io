@@ -2,7 +2,7 @@ import { LabelledTypography } from "@/shared/components/labelled-typography";
 import { PageBreak } from "@/shared/components/page-break";
 import { EmploymentEntity } from "@/shared/entities/employment-entity";
 import { EntityEmploymentLocalizationKeys } from "@/shared/localization/employment-localization";
-import { Language, LocalizationService } from "@/shared/services/localization-service";
+import { ApplicationLanguage, LocalizationService } from "@/shared/services/localization-service";
 import { Paper, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
@@ -18,7 +18,6 @@ export function Employment(props: EmploymentProps): JSX.Element {
     
     return (
         <>
-            {insertNewPageInPrint("employerApps4All", Language.ENGLISH)}
             <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
                 <Typography color={'Highlight'}>
                     {employedAsAt}
@@ -75,7 +74,7 @@ export function Employment(props: EmploymentProps): JSX.Element {
         return date.toLocaleDateString(localizationService.getCurrentLanguage(), {dateStyle: "medium"})
     }
 
-    function insertNewPageInPrint(employerKey: EntityEmploymentLocalizationKeys, language: Language): ReactNode {
+    function insertNewPageInPrint(employerKey: EntityEmploymentLocalizationKeys, language: ApplicationLanguage): ReactNode {
         if (props.employmentEntity.employerKey === employerKey && localizationService.getCurrentLanguage() === language) {
             return (<PageBreak/>)
         }  

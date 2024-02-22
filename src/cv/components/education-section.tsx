@@ -51,8 +51,8 @@ export function EducationSection(): JSX.Element {
     }
 
     function getEducationComponents(): React.ReactNode {
-        return educations.map(entity => (
-            <Education educationEntity={entity} key={entity.startDate.getTime()}/>
+        return educations.map((entity, index) => (
+            <Education educationEntity={entity} key={entity.startDate.getTime()} index={index}/>
         ))
     }
 }
