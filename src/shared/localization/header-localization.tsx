@@ -10,9 +10,9 @@ export type HeaderLocalizationKeys = keyof HeaderLocalization
 
 const defaultHeaderLocalization: HeaderLocalization = {
     siteTitle: 'André CV Site',
-    danishButton: 'Danish',
+    danishButton: 'Dansk',
     englishButton: 'English',
-    printButton: 'Print'
+    printButton: 'Download'
 }
 
 export const englishHeaderLocalization: HeaderLocalization = {
@@ -22,7 +22,4 @@ export const englishHeaderLocalization: HeaderLocalization = {
 export const danishHeaderLocalization: HeaderLocalization = {
     ...defaultHeaderLocalization,
     siteTitle: 'André CV Side',
-    danishButton: 'Dansk',
-    englishButton: 'Engelsk',
-    printButton: 'Udskriv'
 }

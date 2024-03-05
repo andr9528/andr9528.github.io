@@ -19,7 +19,8 @@ export enum SkillName {
     PYTHON = 'Python',
     SQL = 'SQL',
     ANGULAR = 'Angular',
-    XAMARIN_FORMS = 'Xamarin Forms'
+    XAMARIN_FORMS = 'Xamarin Forms',
+    ELASTICSEARCH = 'Elasticsearch'
 }
 
 export interface SkillEntity extends Importance {

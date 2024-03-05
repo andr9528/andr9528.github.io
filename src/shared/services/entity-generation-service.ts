@@ -137,6 +137,11 @@ export class EntityGenerationService {
                 level: SkillLevel.Beginner,
                 importance: 40
             },
+            {
+                name: SkillName.ELASTICSEARCH,
+                level: SkillLevel.Novice,
+                importance: 15
+            },
             
         ]
 

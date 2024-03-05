@@ -15,8 +15,8 @@ export function LanguagesSection(): JSX.Element {
 
     return (
     <>
-        {insertNewPageInPrint(ApplicationLanguage.DANISH)}
-        {insertNewPageInPrint(ApplicationLanguage.ENGLISH)}
+        {/* {insertNewPageInPrint(ApplicationLanguage.DANISH)} */}
+        {/* {insertNewPageInPrint(ApplicationLanguage.ENGLISH)} */}
         <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
             {isPrinter ? getPrinterLayout() : getWebLayout()}
         </Paper>    
