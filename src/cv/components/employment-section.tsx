@@ -52,8 +52,8 @@ export function EmploymentSection(): JSX.Element {
     }
 
     function getEmploymentComponents(): React.ReactNode {
-        return employments.map(entity => (
-            <Employment data-printer-divisible={isPrinter} employmentEntity={entity} key={entity.startDate.getTime()}/>
+        return employments.map((entity, index) => (
+            <Employment data-printer-divisible={isPrinter} employmentEntity={entity} key={entity.startDate.getTime()} index={index}/>
         ))
     }
 }

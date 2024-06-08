@@ -4,22 +4,24 @@ import { EducationEntity } from "@/shared/entities/education-entity";
 import { ApplicationLanguage, LocalizationService } from "@/shared/services/localization-service";
 import { Paper, Typography } from "@mui/material";
 import { ReactNode } from "react";
+import { IndexProps } from '../../../shared/props/index-props';
+import { PrintingService } from "@/shared/services/printing-service";
 
-interface EducationProps {
+interface EducationProps extends IndexProps {
     educationEntity: EducationEntity
-    index: number
 }
 
 export function Education(props: EducationProps): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
+    const printService: PrintingService = PrintingService.instance
     const entityLocalizationService = localizationService.getEducationLocalizationService()
     const educationAsAt: string = buildEducationAsAtString()
     const educationPeriode: string = buildEducationPeriodeString()    
 
     return (
         <>
-            {insertNewPageInPrint(1, ApplicationLanguage.DANISH)}
-            {insertNewPageInPrint(1, ApplicationLanguage.ENGLISH)}
+            {/* {insertNewPageInPrint(1, ApplicationLanguage.DANISH)}
+            {insertNewPageInPrint(1, ApplicationLanguage.ENGLISH)} */}
             <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
                 <Typography color={'Highlight'}>
                     {educationAsAt}
@@ -69,13 +71,5 @@ export function Education(props: EducationProps): JSX.Element {
 
     function getLocalizedDate(date: Date): string {
         return date.toLocaleDateString(localizationService.getCurrentLanguage(), {dateStyle: "medium"})
-    }
-
-    function insertNewPageInPrint(index: number, language: ApplicationLanguage): ReactNode {
-        if (props.index === index && localizationService.getCurrentLanguage() === language) {
-            return (<PageBreak/>)
-        }  
-
-        return (<></>)        
     }
 }

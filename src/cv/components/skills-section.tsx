@@ -51,7 +51,7 @@ export function SkillsSection(): JSX.Element {
     }
 
     function getSkillComponents(): React.ReactNode {
-        return skills.map(entity => (<Skill skillEntity={entity} key={getUniqueKey(entity)}/>))
+        return skills.map((entity, index) => (<Skill skillEntity={entity} key={getUniqueKey(entity)} index={index}/>))
     }
 
     function getUniqueKey(skill: SkillEntity): number {

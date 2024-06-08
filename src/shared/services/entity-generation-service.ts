@@ -63,6 +63,15 @@ export class EntityGenerationService {
                 workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionTv2"),
                 joiningWordKey: this.getComponentEmploymentLocalizationKey("joiningWord1")
             },
+            {
+                jobTitleKey: this.getEntityEmploymentLocalizationKey("jobTitleFashionheroInternship"),                 
+                startDate: new Date(2024, 4, 6),
+                endDate: new Date(2024, 4, 31),
+                employerKey: this.getEntityEmploymentLocalizationKey("employerFashionheroInternship"),
+                city: 'Odense',
+                workDescriptionKey: this.getEntityEmploymentLocalizationKey("workDescriptionFashionheroInternship"),
+                joiningWordKey: this.getComponentEmploymentLocalizationKey("joiningWord1")
+            },
         ]
 
         return entities.sort((a, b) => this.sortPeriode(a, b)).reverse()

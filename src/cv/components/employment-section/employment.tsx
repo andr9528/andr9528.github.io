@@ -2,22 +2,27 @@ import { LabelledTypography } from "@/shared/components/labelled-typography";
 import { PageBreak } from "@/shared/components/page-break";
 import { EmploymentEntity } from "@/shared/entities/employment-entity";
 import { EntityEmploymentLocalizationKeys } from "@/shared/localization/employment-localization";
+import { IndexProps } from "@/shared/props/index-props";
 import { ApplicationLanguage, LocalizationService } from "@/shared/services/localization-service";
+import { PrintingService } from "@/shared/services/printing-service";
 import { Paper, Typography } from "@mui/material";
 import { ReactNode } from "react";
 
-interface EmploymentProps {
-    employmentEntity: EmploymentEntity
+interface EmploymentProps extends IndexProps {
+    employmentEntity: EmploymentEntity    
 }
 
 export function Employment(props: EmploymentProps): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance    
+    const printService: PrintingService = PrintingService.instance
     const entityLocalizationService = localizationService.getEmploymentLocalizationService()
     const employedAsAt: string = buildEmployedAsAtString()
     const employmentPeriode: string = buildEmploymentPeriodeString()
     
     return (
         <>
+            {printService.insertNewPageInPrintByProps(props, 1, ApplicationLanguage.DANISH)}
+            {printService.insertNewPageInPrintByProps(props, 1, ApplicationLanguage.ENGLISH)}
             <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
                 <Typography color={'Highlight'}>
                     {employedAsAt}
@@ -72,13 +77,5 @@ export function Employment(props: EmploymentProps): JSX.Element {
 
     function getLocalizedDate(date: Date): string {
         return date.toLocaleDateString(localizationService.getCurrentLanguage(), {dateStyle: "medium"})
-    }
-
-    function insertNewPageInPrint(employerKey: EntityEmploymentLocalizationKeys, language: ApplicationLanguage): ReactNode {
-        if (props.employmentEntity.employerKey === employerKey && localizationService.getCurrentLanguage() === language) {
-            return (<PageBreak/>)
-        }  
-
-        return (<></>)        
     }
 }

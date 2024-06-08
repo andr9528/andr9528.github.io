@@ -56,8 +56,8 @@ export function ProjectSection(): JSX.Element {
     }
 
     function getProjectComponents(): React.ReactNode {
-        return projects.map(entity => (
-            <Project data-printer-divisible={isPrinter} projectEntity={entity} key={entity.importance} />
+        return projects.map((entity, index) => (
+            <Project data-printer-divisible={isPrinter} projectEntity={entity} key={entity.importance} index={index} />
         ))
     }
 }

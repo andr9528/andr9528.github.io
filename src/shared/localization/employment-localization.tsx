@@ -6,12 +6,15 @@ export interface EntityEmploymentLocalization {
     jobTitleApps4All: ReactNode
     jobTitleTv2: ReactNode
     // jobTitleOwn: ReactNode
+    jobTitleFashionheroInternship: ReactNode
     workDescriptionApps4All: ReactNode
     workDescriptionTv2: ReactNode
     // workDescriptionOwn: ReactNode
+    workDescriptionFashionheroInternship: ReactNode
     employerApps4All: ReactNode
     employerTv2: ReactNode
     // employerOwn: ReactNode
+    employerFashionheroInternship: ReactNode
 }
 
 export type EntityEmploymentLocalizationKeys = keyof EntityEmploymentLocalization
@@ -41,14 +44,13 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
         jobTitleApps4All: 'Junior Developer',
         jobTitleTv2: 'Junior Developer',
         // jobTitleOwn: 'Software Developer',
-        workDescriptionApps4All: 
-        `My primary task was to develop new mobile applications suitable to Android, for using in Point-of-Sale units. 
+        workDescriptionApps4All: `My primary task was to develop new mobile applications suitable to Android, for using in Point-of-Sale units. 
         Development of the mobile applications i did through the use of Xamarin Forms.
         In addition to this, i also develop some Microservices to support the mobile applications.
         The microservices was deployed to Google Cloud.        
         `,
         workDescriptionTv2: createTv2WorkDescription(
-        `I was part of a team of developers who by use of SCRUM, developed on a number of internal tools, some of which are Open Source projects. 
+            `I was part of a team of developers who by use of SCRUM, developed on a number of internal tools, some of which are Open Source projects. 
         Some of the projects i have contributed to include the repositories linked to below.
 
         On the Cliptool project, i rewrote the frontend side of the application, mainly to limit the amount of components per file to one.
@@ -60,33 +62,14 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
         I also helped with moving over parts of the company specific code from the old repository, to the new structure.        
         All in all, i went from newer having touched or used Typescript, to now feeling just as comfortable in that as i am in C#.`
         ),
-        // workDescriptionOwn: createOwnWorkDescription(
-        //     {
-        //         baseText: 
-        //         `Part time work on a number of my own projects, that has been sidelined during my time at Tv2.
-        //         These can be shelved with moments notice, should a new job opportunity arise.
-        //         As they are my own projects, I do not earn anything working on this, other than what support i get from the state.
-        //         The order of the below listed projects, are the order that i focus on them.
-        //         `,
-        //         tracker: 
-        //         `A highly modular program usable to track a number of things, depending on the modules included. 
-        //         Will be developed using C#, Entity Framework Core and Maui as frontend.
-        //         Planned modules include: Dining, Budget and Time.
-        //         `,
-        //         gameDev: 
-        //         `I have a game in mind that i would like to slowly get started on.
-        //         Currently i have noted down many details of the planned game, but have not started on any code for it yet.
-        //         I am heavily leaning toward using Godot as the game engine of choice, mainly for the C# language, but also due to the controversy about Unity during 2023.
-        //         The game genre will be Tower Defence / Rougelike, with inspiration from a number of Mythologies, as a nod to my liking of 'Age of Mythology'. 
-        //         `,                
-        //         moddingDev: 
-        //         `I have some ideas for mods for one of my favorit games as of late, Oxygen Not Included, which i might spend some time on bringing to life.
-        //         Some of the ideas i have shared with other modders for the game, and i will thus likely spar with them if needed.
-        //         The game is developer using Unity, therefore C# is the language to be used, which is an advantage for me.
-        //         It uses uses 'Harmony' as the access point for modders, which might help me learn it for use my own game, if Godot allows it.
-        //         `
-        //     }
-        // )
+        jobTitleFashionheroInternship: "Software Developer",
+        workDescriptionFashionheroInternship: createFashionHeroInternshipDescription(
+            `This position was a one month Company Internship. 
+            Using C#, i worked on developing a program to load their storage, exported to an Xml file, into a local database.
+            The loaded storage would then be export to a Xml in another format, for use by other sites to sell products from us.
+            During this work i made use of Entity Framework Core to write to a Sqlite database
+        `),
+        employerFashionheroInternship: "Fashionhero"
     },
     componentLocalization: {
         sectionHeader: 'Employment History',
@@ -129,7 +112,14 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
          På Sofie Projektet, hjælp jeg med at skabe dele af backenden relateret til interaktionen med den underligende mongo database, samt den frontend rettet presentations lag.
          Jeg hjælp også med at flytte dele af den virksomheds specifikke kode fra det gamle repository over i den nye struktur.         
          Alt i alt, så er jeg gået fra ikke at have rørt eller anvendt Typescript, til nu at føle mig lige så komfortable i det som i C#.`
-        ),
+        ),        
+        jobTitleFashionheroInternship: "Software Udvikler",
+        workDescriptionFashionheroInternship: createFashionHeroInternshipDescription(
+            `Denne stilling var en, en-måneds virksomhedpraktik.
+            Ved brug af C#, arbejdet jeg på at udvikle et program der kunne loade deres lagerdata, fra den eksportered Xml fil, ind i en local Database.
+            Det indlæste lager ville derefter kunne blive eksporteret til en Xml fil i et andet format, til brug for at få en anden side til at sælge vores produkter for os.
+            Under dette arbejde gjorde jeg brug af Entity Framework Core til at skrive til den Sqlite Database jeg gjorde brug af.
+        `),
         // workDescriptionOwn: createOwnWorkDescription(
         //     {
         //         baseText: 
@@ -187,6 +177,20 @@ function createTv2WorkDescription(baseText: string): ReactNode {
         <ListItem sx={{ display: 'list-item' }}>
             <Link href="https://github.com/tv2/ng-sofie">
             https://github.com/tv2/ng-sofie
+            </Link>
+        </ListItem>
+    </List>
+    </>
+}
+
+
+function createFashionHeroInternshipDescription(baseText: string): ReactNode {
+    return <>
+        {baseText}
+    <List sx={{ listStyleType: 'disc', pl: 4 }}>
+        <ListItem sx={{ display: 'list-item' }}>
+            <Link href="https://github.com/FashionHeroOnGit/PortalProject">
+            https://github.com/FashionHeroOnGit/PortalProject
             </Link>
         </ListItem>
     </List>

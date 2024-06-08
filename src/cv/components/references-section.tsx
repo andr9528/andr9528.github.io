@@ -51,8 +51,8 @@ export function ReferencesSection(): JSX.Element {
     }
 
     function getLinkComponents(): React.ReactNode {
-        return references.map(entity => (
-            <Reference referenceEntity={entity} key={getUniqueKey(entity)}/>
+        return references.map((entity, index) => (
+            <Reference referenceEntity={entity} key={getUniqueKey(entity)} index={index}/>
         ))
     }
 

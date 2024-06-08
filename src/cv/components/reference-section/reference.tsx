@@ -1,13 +1,16 @@
 import { ReferenceEntity } from "@/shared/entities/reference-entity";
+import { IndexProps } from "@/shared/props/index-props";
 import { LocalizationService } from "@/shared/services/localization-service";
+import { PrintingService } from "@/shared/services/printing-service";
 import { Paper, Typography } from "@mui/material";
 
-interface ReferenceProps {
+interface ReferenceProps extends IndexProps {
     referenceEntity: ReferenceEntity
 }
 
 export function Reference(props: ReferenceProps): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
+    const printService: PrintingService = PrintingService.instance
     const entityLocalizationService = localizationService.getReferencesLocalizationService()
     const whoLine: string = buildWhoLine()
     const contactInfoLine: string = buildContactInfoLine()
