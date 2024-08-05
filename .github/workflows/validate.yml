@@ -2,10 +2,10 @@ name: Validate-YAML
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
     paths: ['.github/**']
   pull_request:
-    branches: [ main ]
+    branches: [main]
     paths: ['.github/**']
 
   workflow_dispatch:
@@ -14,22 +14,22 @@ jobs:
   validate-yaml:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      with: 
-            sparse-checkout: .github
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github
 
-    - name: Validate YAML files
-      id: lint
-      uses: ibiqlik/action-yamllint@v3
+      - name: Validate YAML files
+        id: lint
+        uses: ibiqlik/action-yamllint@v3
 
-    - name: Echo Lint Result
-      if: always()
-      run: echo ${{ steps.lint.outputs.logfile }}
+      - name: Echo Lint Result
+        if: always()
+        run: echo ${{ steps.lint.outputs.logfile }}
 
-    - name: Output Logfile
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
+      - name: Output Logfile
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
           name: yamllint-logfile
-          path: ${{ steps.lint.outputs.logfile }} 
+          path: ${{ steps.lint.outputs.logfile }}

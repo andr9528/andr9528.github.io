@@ -30,7 +30,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
-      run: 
+      run:
         working-directory: react
     steps:
       - name: Checkout
@@ -89,7 +89,7 @@ jobs:
   # Deployment job
   deploy:
     defaults:
-      run: 
+      run:
         working-directory: react
     environment:
       name: github-pages

@@ -27,26 +27,32 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run: 
-        working-directory: react
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with: 
-            sparse-checkout: react
+        with:
+          sparse-checkout: react
+      - name: Change Directory to React Folder
+        run: cd ./react/
+      - name: Check yarn.lock Exist
+        id: check_yarn
+        uses: thebinaryfelix/check-file-existence-action@v1
+        with:
+          files: 'yarn.lock'
+      - name: Check package.json Exist
+        id: check_package
+        uses: thebinaryfelix/check-file-existence-action@v1
+        with:
+          files: 'package.json'
       - name: Detect package manager
         id: detect-package-manager
-        
-        # Old-1: if [ -f "${{ github.workspace }}/yarn.lock" ]; then
-        # Old-2: elif [ -f "${{ github.workspace }}/package.json" ]; then
         run: |          
-          if [ ${{ hashFiles('**/yarn.lock')  != '' }} ] then
+          if ${{ steps.check_yarn.outputs.exists == 'true' }} then
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
             exit 0
-          elif [ ${{ hashFiles('**/package.json') != '' }} ] then
+          if ${{ steps.check_package.outputs.exists == 'true' }} then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
