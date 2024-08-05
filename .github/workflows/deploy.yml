@@ -27,23 +27,24 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./react
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           sparse-checkout: react
-      - name: Change Directory to React Folder
-        run: cd ${{github.workspace}}/react/
       - name: Check yarn.lock Exist
         id: check_yarn
         uses: andstor/file-existence-action@v3
         with:
-          files: 'yarn.lock'
+          files: './react/yarn.lock'
       - name: Check package.json Exist
         id: check_package
         uses: andstor/file-existence-action@v3
         with:
-          files: 'package.json'
+          files: './react/package.json'
       - name: Detect package manager
         id: detect-package-manager
         run: |          
