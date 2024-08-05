@@ -33,7 +33,7 @@ jobs:
         with:
           sparse-checkout: react
       - name: Change Directory to React Folder
-        run: cd ./react/
+        run: cd ${{github.workspace}}/react/
       - name: Check yarn.lock Exist
         id: check_yarn
         uses: andstor/file-existence-action@v3
