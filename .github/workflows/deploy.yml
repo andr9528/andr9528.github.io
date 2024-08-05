@@ -36,12 +36,12 @@ jobs:
         run: cd ./react/
       - name: Check yarn.lock Exist
         id: check_yarn
-        uses: thebinaryfelix/check-file-existence-action@v1
+        uses: andstor/file-existence-action@v3
         with:
           files: 'yarn.lock'
       - name: Check package.json Exist
         id: check_package
-        uses: thebinaryfelix/check-file-existence-action@v1
+        uses: andstor/file-existence-action@v3
         with:
           files: 'package.json'
       - name: Detect package manager
