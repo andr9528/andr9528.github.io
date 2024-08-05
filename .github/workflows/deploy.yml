@@ -48,13 +48,13 @@ jobs:
       - name: Detect package manager
         id: detect-package-manager
         run: |          
-          if ${{ steps.check_yarn.outputs.exists == 'true' }}; then
+          if ${{ steps.check_yarn.outputs.files_exists == 'true' }}; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
             exit 0
           fi
-          if ${{ steps.check_package.outputs.exists == 'true' }}; then
+          if ${{ steps.check_package.outputs.files_exists == 'true' }}; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
