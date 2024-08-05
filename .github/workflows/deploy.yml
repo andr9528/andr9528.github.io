@@ -27,24 +27,21 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{github.workspace}}/react
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           sparse-checkout: react
-      - name: Check yarn.lock Exist
+      - name: Check yarn lock Exist
         id: check_yarn
         uses: andstor/file-existence-action@v3
         with:
           files: './react/yarn.lock'
-      - name: Check package.json Exist
+      - name: Check package lock Exist
         id: check_package
         uses: andstor/file-existence-action@v3
         with:
-          files: './react/package.json'
+          files: './react/package-lock.json'
       - name: Detect package manager
         id: detect-package-manager
         run: |          
@@ -52,33 +49,38 @@ jobs:
             echo "manager=yarn" >> $GITHUB_OUTPUT
             echo "command=install" >> $GITHUB_OUTPUT
             echo "runner=yarn" >> $GITHUB_OUTPUT
+            echo "lock=./react/yarn.lock" >> $GITHUB_OUTPUT
             exit 0
           fi
           if ${{ steps.check_package.outputs.files_exists == 'true' }}; then
             echo "manager=npm" >> $GITHUB_OUTPUT
             echo "command=ci" >> $GITHUB_OUTPUT
             echo "runner=npx --no-install" >> $GITHUB_OUTPUT
+            echo "lock=./react/package-lock.json" >> $GITHUB_OUTPUT
             exit 0
           fi
           echo "Unable to determine package manager"
           exit 1          
-      # - name: Change Directory to React Folder
-      #   run: cd ${{github.workspace}}/react
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: "16"
-          cache: ${{ steps.detect-package-manager.outputs.manager }}       
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: ${{ steps.detect-package-manager.outputs.lock }}
       - name: Install dependencies
-        run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        run: |
+          cd ./react
+          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Vite
-        run: ${{ steps.detect-package-manager.outputs.runner }} vite build
+        run: |
+          cd ./react
+          ${{ steps.detect-package-manager.outputs.runner }} vite build
       - name: Setup Pages
         uses: actions/configure-pages@v3 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./build
+          path: ./react/build
 
   # Deployment job
   deploy:
