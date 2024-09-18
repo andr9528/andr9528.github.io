@@ -1,3 +1,7 @@
 [submodule "andr9528"]
 	path = andr9528
 	url = https://github.com/andr9528/andr9528
+[submodule "Resume"]
+	path = Resume
+	url = https://github.com/andr9528/Resume
+	branch = main
