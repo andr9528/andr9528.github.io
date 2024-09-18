@@ -32,8 +32,8 @@ export function WebCv(): JSX.Element {
                         </Grid>
                         <Grid width={'29%'}>
                             <GeneralInformationSection/>
-                            <LinksSection/>
                             <SkillsSection/>
+                            <LinksSection/>
                             <LanguagesSection/>
                         </Grid>                
                     </Grid>

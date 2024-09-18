@@ -41,8 +41,8 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
         employerApps4All: 'Apps4All',
         employerTv2: 'Tv2 Danmark',
         // employerOwn: 'Myself',
-        jobTitleApps4All: 'Junior Developer',
-        jobTitleTv2: 'Junior Developer',
+        jobTitleApps4All: 'Mobile Developer',
+        jobTitleTv2: 'Software Developer',
         // jobTitleOwn: 'Software Developer',
         workDescriptionApps4All: `My primary task was to develop new mobile applications suitable to Android, for using in Point-of-Sale units. 
         Development of the mobile applications i did through the use of Xamarin Forms.
@@ -92,8 +92,8 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
     entityLocalization: {
         ...defaultEmploymentLocalization.entityLocalization,        
         // employerOwn: 'Mig selv',
-        jobTitleApps4All: 'Junior Udvikler',
-        jobTitleTv2: 'Junior Udvikler',
+        jobTitleApps4All: 'Mobil Udvikler',
+        jobTitleTv2: 'Software Udvikler',
         // jobTitleOwn: 'Software Udvikler',
         workDescriptionApps4All: 
         `Min primære arbejdsopgave var at udvikle nye mobil applikationer egnet til Android, til brug på Point-of-sale enheder.
