@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "description": "Resume",
+  "display": "standalone",
+  "name": "Resume",
+  "short_name": "Resume",
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "scope": "/"
+}
