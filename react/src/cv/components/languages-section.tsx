@@ -1,15 +1,17 @@
 import { LanguageEntity } from "@/shared/entities/language-entity";
 import { EntityGenerationService } from "@/shared/services/entity-generation-service";
-import { LocalizationService } from "@/shared/services/localization-service";
+import { ApplicationLanguage, LocalizationService } from "@/shared/services/localization-service";
 import { Paper, Typography } from "@mui/material";
 import { Language } from "./language-section/language";
 import { Page, usePrinter } from "react-pdf-printer";
+import { PrintingService } from "@/shared/services/printing-service";
 
 export function LanguagesSection(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const entityLocalizationService = localizationService.getLanguageLocalizationService()
     const languages: LanguageEntity[] = EntityGenerationService.instance.getLanguageEntities()
     const { isPrinter } = usePrinter()
+    const printService: PrintingService = PrintingService.instance
 
     return (
     <>
@@ -22,10 +24,14 @@ export function LanguagesSection(): JSX.Element {
 
     function getPrinterLayout(): JSX.Element {
         return (
-            <Page>
-                {getSectionHeader()}
-                {getLanguageComponents()}
-            </Page>
+            <>
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.DANISH)}
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.ENGLISH)}
+                <Page>
+                    {getSectionHeader()}
+                    {getLanguageComponents()}
+                </Page>
+            </>
         )
     }
 

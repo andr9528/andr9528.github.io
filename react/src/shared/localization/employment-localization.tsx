@@ -52,7 +52,8 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
         workDescriptionTv2: createTv2WorkDescription(
         `This position ended due to a contract running out, and it not being able to be renewed, not because i was fired.
             I was part of a team of developers who by use of SCRUM, developed on a number of internal tools, some of which are Open Source projects. 
-        Some of the projects i have contributed to include the repositories linked to below.
+        Some of the projects i have contributed to have since my contract ran out been changed to be Closed Source. I do know that this change is only temporary.
+        Down below are links to projects i have contributed to. Some of those links might not work, because of the change to Closed Source. 
 
         On the Cliptool project, i rewrote the frontend side of the application, mainly to limit the amount of components per file to one.
         The rewrite was also done to apply a better file structure to the project, as it was difficult to know where different components were located beforehand.
@@ -103,8 +104,9 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
         `,
         workDescriptionTv2: createTv2WorkDescription(
         `Denne stilling sluttet på grund af min kontrakt udløb, og ikke kunne blive fornyet, ikke på grund af jeg blev fyret.
-        Jeg deltog i et team af udviklere hvor vi ved brug af SCRUM, udviklet og forbedret på en række interne værktøjer, hvor nogle af dem er Open Source. 
-         Nogle af de Open Source projekter som jeg har bidraget til er listed længere nede.
+        Jeg deltog i et team af udviklere hvor vi ved brug af SCRUM, udviklet og forbedret på en række interne værktøjer, hvor nogle af dem er Open Source.
+         Siden min kontrakt udløb er nogle af projekterne blevet ændret til Closed Source, men jeg har hørt at det er kun en midlertidig ændring. 
+         Nedenfor er der links til de projekter jeg har bidraget til. På grund af ændringen til Closed Source, vil nogle af de links til projekterne muligvis ikke virke.
          
          På Cliptool projected, genskrev jeg frontend siden af programmet, hovedsagelidt for at begrænse antallet af komponenter per fil til en.
          Omskrivningen betød også at en bedre fil struktur blev påført projektet, da det før var besværligt at finde komponenter man havde brug for at rette i.

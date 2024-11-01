@@ -14,18 +14,16 @@ export function LinksSection(): JSX.Element {
     const { isPrinter } = usePrinter()
     
     return (
-    <>
-        {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.DANISH)}
-        {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.ENGLISH)}
         <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
             {isPrinter ? getPrinterLayout() : getWebLayout()}
         </Paper>
-    </>
     )
 
     function getPrinterLayout(): JSX.Element {
         return (
             <>
+                {/* {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.DANISH)}
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.ENGLISH)} */}
                 <Page>
                     {getSectionHeader()}
                 </Page>

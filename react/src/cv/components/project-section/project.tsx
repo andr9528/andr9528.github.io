@@ -16,8 +16,8 @@ export function Project(props: ProjectProps): JSX.Element {
     
     return (
     <>
-        {printService.insertNewPageInPrintByProps(props, 0, ApplicationLanguage.DANISH)}
-        {printService.insertNewPageInPrintByProps(props, 0, ApplicationLanguage.ENGLISH)}
+        {/* {printService.insertNewPageInPrintByProps(props, 0, ApplicationLanguage.DANISH)}
+        {printService.insertNewPageInPrintByProps(props, 0, ApplicationLanguage.ENGLISH)} */}
         <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
             <Typography color={'Highlight'}>
                 {localizationService.getProjectLocalizationService().getEntityText(props.projectEntity.titleKey)}

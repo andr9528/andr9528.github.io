@@ -1,16 +1,18 @@
 import { ProjectEntity } from "@/shared/entities/project-entity"
 import { EntityGenerationService } from "@/shared/services/entity-generation-service"
-import { LocalizationService } from "@/shared/services/localization-service"
+import { ApplicationLanguage, LocalizationService } from "@/shared/services/localization-service"
 import { Box, Paper, Typography } from "@mui/material"
 import React from "react"
 import { Page, Pages, usePrinter } from "react-pdf-printer"
 import { Project } from "./project-section/project"
+import { PrintingService } from "@/shared/services/printing-service"
 
 export function ProjectSection(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const entityLocalizationService = localizationService.getProjectLocalizationService()
     const projects: ProjectEntity[] = EntityGenerationService.instance.getProjectEntities()
     const { isPrinter } = usePrinter()
+    const printService: PrintingService = PrintingService.instance
    
    return (
         <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
@@ -21,6 +23,8 @@ export function ProjectSection(): JSX.Element {
     function getPrinterLayout(): JSX.Element {
         return (
             <>
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.DANISH)}
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.ENGLISH)}
                 <Page>
                     {getSectionStart()}
                 </Page>

@@ -1,15 +1,17 @@
 import { SkillEntity } from "@/shared/entities/skill-entity"
 import { EntityGenerationService } from "@/shared/services/entity-generation-service"
-import { LocalizationService } from "@/shared/services/localization-service"
+import { ApplicationLanguage, LocalizationService } from "@/shared/services/localization-service"
 import { Box, Paper, Typography } from "@mui/material"
 import { Skill } from "./skills-section/skill"
 import { Page, Pages, usePrinter } from "react-pdf-printer"
+import { PrintingService } from "@/shared/services/printing-service"
 
 export function SkillsSection(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const entityLocalizationService = localizationService.getSkillsLocalizationService()
     const skills: SkillEntity[] = EntityGenerationService.instance.getSkillsEntities()
     const { isPrinter } = usePrinter()
+    const printService: PrintingService = PrintingService.instance
 
     return (
         <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
@@ -20,6 +22,8 @@ export function SkillsSection(): JSX.Element {
     function getPrinterLayout(): JSX.Element {
         return (
             <>
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.DANISH)}
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.ENGLISH)}
                 <Page>
                     {getSectionHeader()}
                 </Page>
