@@ -33,7 +33,7 @@ export function PrintCv(): JSX.Element {
                 <SkillsSection/>
                 <Page>
                     <LanguagesSection/>
-                    <ReferencesSection/>
+                    {/* <ReferencesSection/> */}
                     <LinksSection/>
                 </Page>
             </OverflowStack>

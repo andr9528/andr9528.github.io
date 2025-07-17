@@ -25,7 +25,7 @@ export function WebCv(): JSX.Element {
                             <EmploymentSection/>
                             <ProjectSection/>
                             <EducationSection/>
-                            <ReferencesSection/>
+                            {/* <ReferencesSection/> */}
                         </Grid>
                         <Grid width={'2%'} display={"grid"}>
                             <Divider orientation='vertical' sx={{marginX: '10px', borderRightWidth: 5, width: '1px', justifySelf: 'center'}}/>

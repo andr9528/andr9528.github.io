@@ -9,7 +9,7 @@ export interface HeaderLocalization {
 export type HeaderLocalizationKeys = keyof HeaderLocalization
 
 const defaultHeaderLocalization: HeaderLocalization = {
-    siteTitle: 'André CV Site',
+    siteTitle: 'André Resume Site',
     danishButton: 'Dansk',
     englishButton: 'English',
     printButton: 'Download'

@@ -23,8 +23,8 @@ export function ProjectSection(): JSX.Element {
     function getPrinterLayout(): JSX.Element {
         return (
             <>
-                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.DANISH)}
-                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.ENGLISH)}
+                {/* {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.DANISH)}
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.ENGLISH)} */}
                 <Page>
                     {getSectionStart()}
                 </Page>

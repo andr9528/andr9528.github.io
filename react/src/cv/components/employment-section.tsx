@@ -1,16 +1,18 @@
 import { EmploymentEntity } from "@/shared/entities/employment-entity";
 import { EntityGenerationService } from "@/shared/services/entity-generation-service";
-import { LocalizationService } from "@/shared/services/localization-service";
+import { ApplicationLanguage, LocalizationService } from "@/shared/services/localization-service";
 import { Box, Paper, Typography } from "@mui/material";
 import { Employment } from "./employment-section/employment";
 import { Page, Pages, usePrinter } from "react-pdf-printer";
 import { useEffect } from "react";
+import { PrintingService } from "@/shared/services/printing-service";
 
 export function EmploymentSection(): JSX.Element {
     const localizationService: LocalizationService = LocalizationService.instance
     const entityLocalizationService = localizationService.getEmploymentLocalizationService()
     const employments: EmploymentEntity[] = EntityGenerationService.instance.getEmploymentEntities()
     const { isPrinter } = usePrinter()
+    const printService: PrintingService = PrintingService.instance
 
     return (
         <Paper elevation={2} sx={{padding: '5px', margin: '5px'}}>
@@ -21,6 +23,8 @@ export function EmploymentSection(): JSX.Element {
     function getPrinterLayout(): JSX.Element {
         return (
             <>
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.DANISH)}
+                {printService.insertNewPageInPrintByLanguage(ApplicationLanguage.ENGLISH)}
                 <Page>
                     {getSectionHeader()}
                 </Page>

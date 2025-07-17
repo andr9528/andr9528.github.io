@@ -7,14 +7,20 @@ export interface EntityEmploymentLocalization {
     jobTitleTv2: ReactNode
     // jobTitleOwn: ReactNode
     jobTitleFashionheroInternship: ReactNode
+    jobTitleNoergaardMikkelsenInternship: ReactNode
+    jobTitleFlowpointInternship: ReactNode
     workDescriptionApps4All: ReactNode
     workDescriptionTv2: ReactNode
+    workDescriptionNoergaardMikkelsenInternship : ReactNode
+    workDescriptionFlowpointInternship : ReactNode
     // workDescriptionOwn: ReactNode
     workDescriptionFashionheroInternship: ReactNode
     employerApps4All: ReactNode
     employerTv2: ReactNode
     // employerOwn: ReactNode
     employerFashionheroInternship: ReactNode
+    employerNoergaardMikkelsenInternship: ReactNode
+    employerFlowpointInternship: ReactNode
 }
 
 export type EntityEmploymentLocalizationKeys = keyof EntityEmploymentLocalization
@@ -50,7 +56,7 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
         The microservices was deployed to Google Cloud.        
         `,
         workDescriptionTv2: createTv2WorkDescription(
-        `This position ended due to a contract running out, and it not being able to be renewed, not because i was fired.
+            `This position ended due to a contract running out, and it not being able to be renewed, not because i was fired.
             I was part of a team of developers who by use of SCRUM, developed on a number of internal tools, some of which are Open Source projects. 
         Some of the projects i have contributed to have since my contract ran out been changed to be Closed Source. I do know that this change is only temporary.
         Down below are links to projects i have contributed to. Some of those links might not work, because of the change to Closed Source. 
@@ -71,7 +77,23 @@ const defaultEmploymentLocalization: EmploymentLocalization = {
             The loaded storage would then be export to a Xml in another format, for use by other sites to sell products from us.
             During this work i made use of Entity Framework Core to write to a Sqlite database
         `),
-        employerFashionheroInternship: "Fashionhero"
+        employerFashionheroInternship: "Fashionhero",
+        jobTitleNoergaardMikkelsenInternship: "Software Developer",
+        jobTitleFlowpointInternship: "Software Developer",
+        workDescriptionNoergaardMikkelsenInternship: createNoergaardMikkelsenInternshipDescription(
+            `This position was a one month Company Internship.
+            Using C# and Uno Platform as the frontend framework, i developed a program to register prompts for Ai's.
+            These prompts was then able to be executed on registered Ai's, starting with Open Ai's ChatGPT, after which their responses would the saved to generate statistics from.
+            The programs ultimate goal was to collect quantitative data about how Ai's responds to the same prompts, before attempts to influence the Ai's responses are made by adjusting the websites of Noergaard Mikkelsens customers.
+            The project is Open Source, and i was allowed to fork to my own profile, before the end of my internship. A link to it can be found below.
+            `),
+        workDescriptionFlowpointInternship: 
+        `This position was a one month Company Internship.
+        Due to being under an NDA, i cannot tell much about what i did.
+        I can say that i developed using C#, to automate some processes for the navy.
+        `,
+        employerNoergaardMikkelsenInternship: "Noergaard Mikkelsen",
+        employerFlowpointInternship: "Flowpoint Defence A/S"
     },
     componentLocalization: {
         sectionHeader: 'Employment History',
@@ -124,6 +146,19 @@ export const danishEmploymentLocalization: EmploymentLocalization = {
             Det indlæste lager ville derefter kunne blive eksporteret til en Xml fil i et andet format, til brug for at få en anden side til at sælge vores produkter for os.
             Under dette arbejde gjorde jeg brug af Entity Framework Core til at skrive til den Sqlite Database jeg gjorde brug af.
         `),
+        employerNoergaardMikkelsenInternship: "Nørgård Mikkelsen",
+        jobTitleNoergaardMikkelsenInternship: "Software Udvikler",
+        jobTitleFlowpointInternship: "Software Udvikler",
+        workDescriptionFlowpointInternship: 
+        `Denne stilling var en, en-måneds virksomhedpraktik.
+        Da jeg er underlagt NDA, kan jeg kun nævne at jeg hjælp med udviklingen af Software i C#, til at automatisere processor for flåden.
+        `,
+        workDescriptionNoergaardMikkelsenInternship: createNoergaardMikkelsenInternshipDescription(
+            `Denne stilling var en, en-måneds virksomhedpraktik.
+            Ved brug af C# og Uno Platform from frontend framework, udviklet jeg et program til at registrere Prompts til AI's. Disse prompts kunne så blive sendt afsted til registrerede AI's, med udgangspunk i Open AI's ChatGPT, hvorefter deres svar bliver gemt til at danne statistik over.
+Programmets endelige mål var at indsamle kvantitativ data på hvordan AI's svarer på den samme prompt, før at Nørgård Mikkelsen begynder at påvirke deres svar via justeringer på deres kunders sider.
+Projektet er Open Source, og en udgave kan blive set på min GitHub profil her.
+            `)
         // workDescriptionOwn: createOwnWorkDescription(
         //     {
         //         baseText: 
@@ -195,6 +230,20 @@ function createFashionHeroInternshipDescription(baseText: string): ReactNode {
         <ListItem sx={{ display: 'list-item' }}>
             <Link href="https://github.com/FashionHeroOnGit/PortalProject">
             https://github.com/FashionHeroOnGit/PortalProject
+            </Link>
+        </ListItem>
+    </List>
+    </>
+}
+
+
+function createNoergaardMikkelsenInternshipDescription(baseText: string): ReactNode {
+    return <>
+        {baseText}
+    <List sx={{ listStyleType: 'disc', pl: 4 }}>
+        <ListItem sx={{ display: 'list-item' }}>
+            <Link href="https://github.com/andr9528/gaio">
+            https://github.com/andr9528/gaio
             </Link>
         </ListItem>
     </List>

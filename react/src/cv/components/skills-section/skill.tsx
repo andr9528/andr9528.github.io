@@ -14,8 +14,8 @@ export function Skill(props: SkillProps): JSX.Element {
     
     return (
         <>
-            {/* {printService.insertNewPageInPrintByProps(props, 3, ApplicationLanguage.DANISH)}
-            {printService.insertNewPageInPrintByProps(props, 3, ApplicationLanguage.ENGLISH)} */}
+            {printService.insertNewPageInPrintByProps(props, 4, ApplicationLanguage.DANISH)}
+            {printService.insertNewPageInPrintByProps(props, 4, ApplicationLanguage.ENGLISH)}
             <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
                 <Typography>{props.skillEntity.name}</Typography>
                 <Rating value={props.skillEntity.level} readOnly/>

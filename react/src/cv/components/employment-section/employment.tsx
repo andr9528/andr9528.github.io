@@ -21,8 +21,8 @@ export function Employment(props: EmploymentProps): JSX.Element {
     
     return (
         <>
-            {printService.insertNewPageInPrintByProps(props, 1, ApplicationLanguage.DANISH)}
-            {printService.insertNewPageInPrintByProps(props, 1, ApplicationLanguage.ENGLISH)}
+            {/* {printService.insertNewPageInPrintByProps(props, 1, ApplicationLanguage.DANISH)}
+            {printService.insertNewPageInPrintByProps(props, 1, ApplicationLanguage.ENGLISH)} */}
             <Paper elevation={1} sx={{padding: '5px', margin: '5px'}}>
                 <Typography color={'Highlight'}>
                     {employedAsAt}
