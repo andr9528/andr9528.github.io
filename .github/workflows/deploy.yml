@@ -1,97 +1,75 @@
-# Vite version: https://vitejs.dev/guide/static-deploy
-
 name: Deploy Site to Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-    paths: ['react/**']
-
-  # Allows you to run this workflow manually from the Actions tab
+    paths:
+      - 'Resume/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  DOTNET_VERSION: "10.0.x"
+  RESUME_PROJECT: "./Resume/Resume.Frontend/Resume.Frontend.csproj"
+  TARGET_FRAMEWORK: "net10.0-browserwasm"
+  PUBLISH_DIR: "./Resume/Resume.Frontend/bin/Release/net10.0-browserwasm/publish/wwwroot"
+
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout including Resume submodule
         uses: actions/checkout@v4
         with:
-          sparse-checkout: react
-      - name: Check yarn lock Exist
-        id: check_yarn
-        uses: andstor/file-existence-action@v3
+          submodules: recursive
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          files: './react/yarn.lock'
-      - name: Check package lock Exist
-        id: check_package
-        uses: andstor/file-existence-action@v3
-        with:
-          files: './react/package-lock.json'
-      - name: Detect package manager
-        id: detect-package-manager
-        run: |          
-          if ${{ steps.check_yarn.outputs.files_exists == 'true' }}; then
-            echo "manager=yarn" >> $GITHUB_OUTPUT
-            echo "command=install" >> $GITHUB_OUTPUT
-            echo "runner=yarn" >> $GITHUB_OUTPUT
-            echo "lock=./react/yarn.lock" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          if ${{ steps.check_package.outputs.files_exists == 'true' }}; then
-            echo "manager=npm" >> $GITHUB_OUTPUT
-            echo "command=ci" >> $GITHUB_OUTPUT
-            echo "runner=npx --no-install" >> $GITHUB_OUTPUT
-            echo "lock=./react/package-lock.json" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-          echo "Unable to determine package manager"
-          exit 1          
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: "16"
-          cache: ${{ steps.detect-package-manager.outputs.manager }}
-          cache-dependency-path: ${{ steps.detect-package-manager.outputs.lock }}
-      - name: Install dependencies
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Restore workloads
+        run: dotnet workload restore ${{ env.RESUME_PROJECT }}
+
+      - name: Publish Uno WASM
+        run: >
+          dotnet publish ${{ env.RESUME_PROJECT }}
+          -c Release
+          -f ${{ env.TARGET_FRAMEWORK }}
+
+      - name: Prepare Pages artifact
         run: |
-          cd ./react
-          ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Build with Vite
-        run: |
-          cd ./react
-          ${{ steps.detect-package-manager.outputs.runner }} vite build
+          mkdir -p ./site
+          cp -r ${{ env.PUBLISH_DIR }}/* ./site/
+          touch ./site/.nojekyll
+          cp ./site/index.html ./site/404.html
+
       - name: Setup Pages
-        uses: actions/configure-pages@v3 
+        uses: actions/configure-pages@v3
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./react/build
+          path: ./site
 
-  # Deployment job
   deploy:
-    defaults:
-      run: 
-        working-directory: ${{github.workspace}}/react
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-latest
     needs: build
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
