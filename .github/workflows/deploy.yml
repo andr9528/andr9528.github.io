@@ -38,6 +38,9 @@ jobs:
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }}
 
+      - name: Install WASM tools
+        run: dotnet workload install wasm-tools
+
       - name: Restore workloads
         run: dotnet workload restore ${{ env.RESUME_PROJECT }}
 
